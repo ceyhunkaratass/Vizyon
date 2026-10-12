@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -43,13 +43,43 @@
 
   <main>
     <section class="hero" id="ana-sayfa" aria-labelledby="hero-title">
-      <img class="hero-image" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=2000&q=85" alt="Birlikte vakit geçiren genç arkadaşlar" fetchpriority="high">
-      <div class="hero-content">
-        <p class="eyebrow">Malatya Turgut Özal Üniversitesi · Öğrenci topluluğu</p>
-        <h1 id="hero-title">Vizyoner<br>Gençlik</h1>
-        <p class="hero-copy">Akademik, profesyonel ve sosyal gelişimi bir arada ele alıyor; teknoloji ve iş dünyasını genç zihinlerle buluşturuyoruz.</p>
-        <a class="button button-lime" href="#etkinlikler">Etkinlikleri keşfet <span class="arrow" aria-hidden="true">↗</span></a>
+      <div class="hero-sky" aria-hidden="true">
+        <svg viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="swoosh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+          </defs>
+          <g fill="none" stroke="url(#swoosh)" stroke-linecap="round">
+            <path d="M-60 700C220 560 420 760 760 690" stroke-width="2" opacity=".5"/>
+            <path d="M-60 760C260 640 480 800 820 740" stroke-width="5" opacity=".28"/>
+            <path d="M1660 90C1360 160 1230 40 960 110" stroke-width="2" opacity=".5"/>
+            <path d="M1660 150C1330 250 1210 110 920 190" stroke-width="5" opacity=".28"/>
+            <path d="M1660 640C1480 600 1380 700 1220 660" stroke-width="2" opacity=".4"/>
+          </g>
+          <g fill="#fff" opacity=".9">
+            <path transform="translate(120 120) scale(1.1)" d="M0 -14C1.5 -4 4 -1.5 14 0C4 1.5 1.5 4 0 14C-1.5 4 -4 1.5 -14 0C-4 -1.5 -1.5 -4 0 -14Z"/>
+            <path transform="translate(1480 70) scale(.8)" d="M0 -14C1.5 -4 4 -1.5 14 0C4 1.5 1.5 4 0 14C-1.5 4 -4 1.5 -14 0C-4 -1.5 -1.5 -4 0 -14Z"/>
+            <path transform="translate(1540 420) scale(.6)" d="M0 -14C1.5 -4 4 -1.5 14 0C4 1.5 1.5 4 0 14C-1.5 4 -4 1.5 -14 0C-4 -1.5 -1.5 -4 0 -14Z"/>
+            <path transform="translate(60 520) scale(.7)" d="M0 -14C1.5 -4 4 -1.5 14 0C4 1.5 1.5 4 0 14C-1.5 4 -4 1.5 -14 0C-4 -1.5 -1.5 -4 0 -14Z"/>
+            <path transform="translate(820 90) scale(.5)" d="M0 -14C1.5 -4 4 -1.5 14 0C4 1.5 1.5 4 0 14C-1.5 4 -4 1.5 -14 0C-4 -1.5 -1.5 -4 0 -14Z"/>
+          </g>
+        </svg>
       </div>
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Akademik gelişim, sosyal etkileşim</p>
+          <h1 id="hero-title"><span class="h1-top">Hayallerine</span> <span class="h1-grad">Birlikte Ulaşalım</span></h1>
+          <p class="hero-copy">Akademik, profesyonel ve sosyal gelişimi bir arada ele alıyor; teknoloji ve iş dünyasını genç zihinlerle buluşturuyoruz.</p>
+          <a class="button button-glow" href="#etkinlikler">Etkinlikleri keşfet <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <img class="hero-logo" src="assets/hero-logo.jpg" alt="Vizyoner Gençlik, Malatya Turgut Özal Üniversitesi Topluluğu logosu" width="825" height="630" fetchpriority="high">
+      </div>
+      <ul class="wrap pillars" aria-label="Topluluğun alanları">
+        <li class="pillar"><span class="pillar-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4M10 8.5 8 10l2 1.5M14 8.5l2 1.5-2 1.5"/></svg></span><span class="pillar-label">Bilişim</span></li>
+        <li class="pillar"><span class="pillar-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5M3 13h18"/></svg></span><span class="pillar-label">Kariyer</span></li>
+        <li class="pillar"><span class="pillar-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 9.5 9.5-4.5 9.5 4.5-9.5 4.5z"/><path d="M6.5 11.8v4c0 1.2 2.5 2.7 5.5 2.7s5.5-1.5 5.5-2.7v-4M21.5 9.5v5"/></svg></span><span class="pillar-label">Akademi</span></li>
+        <li class="pillar"><span class="pillar-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 5"/></svg></span><span class="pillar-label">Sosyal gelişim</span></li>
+        <li class="pillar"><span class="pillar-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z"/></svg></span><span class="pillar-label">Etkinlik ve daha fazlası</span></li>
+      </ul>
     </section>
 
     <section class="about-band" id="hakkimizda" aria-labelledby="about-title">

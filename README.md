@@ -8,6 +8,7 @@ Malatya Turgut Özal Üniversitesi öğrenci topluluğu Vizyoner Gençlik'in tan
 index.html          Sayfa içeriği (amaç, değerler, yaklaşım, akademik yapı)
 assets/style.css    Tüm stiller
 assets/logo.png     Topluluk logosu (üst/alt köşe ve sekme simgesi)
+assets/hero-logo.jpg Ana sayfadaki büyük logo
 assets/app.js       Etkinlik kartlarını ve arşiv filtresini üretir
 data/events.json    Yaklaşan etkinlikler ve arşiv
 ```
