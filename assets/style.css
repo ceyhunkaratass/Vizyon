@@ -25,7 +25,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .topbar { position: sticky; z-index: 5; top: 0; background: var(--paper); border-bottom: 1px solid var(--line); }
 .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 16px; font-weight: 700; }
-.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; background: var(--green); font-family: var(--display); font-size: 14px; }
+.brand-logo { display: block; width: 48px; height: 47px; object-fit: contain; }
 .links { display: flex; align-items: center; gap: 34px; }
 .links a { text-decoration: none; font-size: 13px; font-weight: 600; }
 .links a:hover, .text-link:hover { color: var(--blue); }
@@ -148,7 +148,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .closing h2 { max-width: 680px; font-size: clamp(34px, 5vw, 55px); }
 .footer { padding: 24px 0; color: white; background: var(--ink); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-.footer .brand-mark { color: var(--ink); }
 .footer-copy { margin: 0; color: #b8c0b6; font-size: 11px; }
 .footer-top { color: white; text-decoration: none; font-size: 12px; font-weight: 600; }
 

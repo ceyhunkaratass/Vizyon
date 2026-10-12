@@ -1,12 +1,13 @@
-# Genç Vizyoner
+# Vizyoner Gençlik
 
-Malatya Turgut Özal Üniversitesi öğrenci topluluğu Genç Vizyoner'in tanıtım sitesi.
+Malatya Turgut Özal Üniversitesi öğrenci topluluğu Vizyoner Gençlik'in tanıtım sitesi.
 
 ## Yapı
 
 ```
-index.html          Sayfa içeriği (amaç, değerler, kültür, akademik yapı)
+index.html          Sayfa içeriği (amaç, değerler, yaklaşım, akademik yapı)
 assets/style.css    Tüm stiller
+assets/logo.png     Topluluk logosu (üst/alt köşe ve sekme simgesi)
 assets/app.js       Etkinlik kartlarını ve arşiv filtresini üretir
 data/events.json    Yaklaşan etkinlikler ve arşiv
 ```
