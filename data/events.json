@@ -1,0 +1,98 @@
+{
+  "categories": [
+    { "id": "atolye", "label": "Atölye" },
+    { "id": "soylesi", "label": "Söyleşi" },
+    { "id": "gonulluluk", "label": "Gönüllülük" }
+  ],
+  "upcoming": [
+    {
+      "title": "Fikirden etkiye: birlikte üretim atölyesi",
+      "category": "atolye",
+      "day": "24",
+      "month": "EKİ",
+      "location": "İstanbul · Örnek konum",
+      "description": "Fikirlerimizi paylaşıyor, küçük adımlarla büyük değişimleri nasıl başlatabileceğimizi keşfediyoruz.",
+      "image": "https://images.unsplash.com/photo-1511632765486-a01980e01f18?auto=format&fit=crop&w=1100&q=80",
+      "alt": "Bir araya gelip sohbet eden topluluk üyeleri",
+      "sample": true
+    },
+    {
+      "title": "Geleceği birlikte konuşuyoruz",
+      "category": "soylesi",
+      "day": "31",
+      "month": "EKİ",
+      "location": "Çevrim içi",
+      "description": "Farklı alanlardan gençlerle merak ettiklerimizi açık bir sohbette buluşturuyoruz.",
+      "image": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=850&q=80",
+      "alt": "Açık havada bir araya gelen gençler",
+      "sample": true
+    },
+    {
+      "title": "Birlikte iyilik için bir gün",
+      "category": "gonulluluk",
+      "day": "07",
+      "month": "KAS",
+      "location": "İstanbul · Örnek konum",
+      "description": "Mahallemizde dayanışmayı büyütmek için bir araya geliyor, elimizden geleni paylaşıyoruz.",
+      "image": "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=850&q=80",
+      "alt": "Gönüllülerin birlikte çalıştığı bir etkinlik",
+      "sample": true
+    }
+  ],
+  "archive": [
+    {
+      "title": "Birlikte üretiyoruz",
+      "category": "atolye",
+      "date": "Mayıs",
+      "description": "Aklımızdakileri masaya yatırdığımız yaratıcı fikir atölyesi.",
+      "image": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80",
+      "alt": "Ortak bir proje üzerinde çalışan ekip arkadaşları",
+      "sample": true
+    },
+    {
+      "title": "Merak ettiklerimiz",
+      "category": "soylesi",
+      "date": "Nisan",
+      "description": "Farklı görüşlerin ve yeni soruların buluştuğu samimi bir sohbet.",
+      "image": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80",
+      "alt": "Katılımcılara konuşma yapan bir konuşmacı",
+      "sample": true
+    },
+    {
+      "title": "Yan yana, mahallemizde",
+      "category": "gonulluluk",
+      "date": "Mart",
+      "description": "Birlikte olmanın gücünü hissettiğimiz dayanışma günü.",
+      "image": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=800&q=80",
+      "alt": "Dayanışma etkinliğinde el ele veren gönüllüler",
+      "sample": true
+    },
+    {
+      "title": "Yeni yollar, yeni fikirler",
+      "category": "atolye",
+      "date": "Şubat",
+      "description": "Merakımızı izleyerek olasılıkları birlikte keşfettiğimiz bir gün.",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
+      "alt": "Bir atölyede notlarını paylaşan katılımcılar",
+      "sample": true
+    },
+    {
+      "title": "Yarına notlar",
+      "category": "soylesi",
+      "date": "Ocak",
+      "description": "Gelecek hayallerimizi ve bugünden başlayabileceklerimizi konuştuk.",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+      "alt": "Ekran karşısında çevrim içi buluşmaya katılan gençler",
+      "sample": true
+    },
+    {
+      "title": "Küçük adımlar, büyük umutlar",
+      "category": "gonulluluk",
+      "date": "Aralık",
+      "description": "Birlikte harekete geçtiğimiz ve dayanışmayı büyüttüğümüz gün.",
+      "image": "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80",
+      "alt": "Topluluk çalışmasında bir araya gelen gönüllüler",
+      "sample": true
+    }
+  ]
+}
