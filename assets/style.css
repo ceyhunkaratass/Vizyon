@@ -79,7 +79,7 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .about-inner { display: grid; grid-template-columns: 1fr .85fr; align-items: center; gap: 72px; }
 .about-band .section-label { color: #c1c8ba; }
 .about-band h2 { max-width: 570px; }
-.about-copy { max-width: 430px; margin: 0; color: #c3c9c0; font-size: 15px; line-height: 1.8; }
+.about-copy { max-width: 520px; margin: 0; color: #c3c9c0; font-size: 15px; line-height: 1.8; }
 .about-copy strong { color: var(--green); font-weight: 600; }
 
 .archive { border-top: 1px solid var(--line); }
