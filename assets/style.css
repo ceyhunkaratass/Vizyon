@@ -142,6 +142,9 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 
 .closing { padding: 68px 0; background: var(--green); }
 .closing-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+[hidden] { display: none !important; }
+.closing-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 16px 28px; }
+.closing .text-link:hover { color: var(--ink); border-color: transparent; }
 .closing h2 { max-width: 680px; font-size: clamp(34px, 5vw, 55px); }
 .footer { padding: 24px 0; color: white; background: var(--ink); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
@@ -172,6 +175,7 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   .academic-aim { grid-column: 2; }
   .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
   .closing-inner { align-items: flex-start; flex-direction: column; }
+  .closing-actions { justify-content: flex-start; }
 }
 
 @media (max-width: 520px) {

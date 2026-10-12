@@ -102,6 +102,17 @@ function showLoadError() {
 
 searchInput.addEventListener("input", filterArchive);
 
+fetch("data/site.json")
+  .then((response) => (response.ok ? response.json() : {}))
+  .then((site) => {
+    const url = (site.ideaFormUrl || "").trim();
+    if (!/^https:\/\//i.test(url)) return;
+    const link = document.querySelector("#idea-link");
+    link.href = url;
+    link.hidden = false;
+  })
+  .catch(() => {});
+
 fetch("data/events.json")
   .then((response) => {
     if (!response.ok) throw new Error(response.status);

@@ -22,6 +22,10 @@ data/events.json    Yaklaşan etkinlikler ve arşiv
 
 Şu an tüm etkinlikler örnek içeriktir.
 
+## Fikir formu bağlantısı
+
+Sayfa sonundaki "Fikrini bize yaz" bağlantısı, `data/site.json` içindeki `ideaFormUrl` doluyken görünür. Örneğin bir Google Formlar adresi yazın (`https://` ile başlamalı); boş bırakırsanız bağlantı gizli kalır.
+
 ## Yerelde çalıştırma
 
 Etkinlikler `fetch` ile yüklendiği için sayfa dosyaya çift tıklayarak değil, bir web sunucusuyla açılmalıdır:
