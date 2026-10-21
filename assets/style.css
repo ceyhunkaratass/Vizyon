@@ -131,15 +131,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .structure-tile h3 { margin: 0; font-family: var(--display); font-size: 20px; font-weight: 600; }
 .structure-tile p { margin: 0; color: var(--muted); font-size: 13px; }
 
-.academic-list { border-top: 1px solid var(--accent); }
-.academic-item { display: grid; grid-template-columns: 220px 1fr 1fr; align-items: start; gap: 8px 36px; padding: 30px 0; border-bottom: 1px solid var(--line); }
-.academic-photo { overflow: hidden; background: var(--surface); aspect-ratio: 1.45 / 1; }
-.academic-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.academic-item h3 { margin-bottom: 14px; font-family: var(--display); font-size: 22px; font-weight: 600; line-height: 1.2; }
-.academic-item h3 span { margin-right: 6px; color: var(--blue); }
-.academic-item ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; line-height: 1.75; }
-.academic-aim { display: grid; gap: 6px; margin: 0; padding: 14px 16px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; line-height: 1.65; }
-.academic-aim strong { color: var(--blue); font-size: 11px; text-transform: uppercase; }
 
 .archive { border-top: 1px solid var(--line); }
 .archive-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
@@ -193,8 +184,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   .approach { grid-template-columns: 1fr; gap: 28px; }
   .value-row { grid-template-columns: 28px 1fr; gap: 6px 18px; }
   .value-row p { grid-column: 2; }
-  .academic-item { grid-template-columns: 180px 1fr; }
-  .academic-aim { grid-column: 2; }
   .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
   .closing-inner { align-items: flex-start; flex-direction: column; }
   .closing-actions { justify-content: flex-start; }
@@ -213,8 +202,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   .section-head { align-items: flex-start; flex-direction: column; gap: 16px; margin-bottom: 25px; }
   h2 { font-size: 42px; }
   .upcoming, .archive-grid { grid-template-columns: 1fr; gap: 26px; }
-  .academic-item { grid-template-columns: 1fr; gap: 16px; }
-  .academic-aim { grid-column: auto; }
   .structure-core { padding: 34px 18px; }
   .structure-core h3 { font-size: 26px; }
   .structure-tiles { gap: 10px; }
