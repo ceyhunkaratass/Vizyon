@@ -209,13 +209,31 @@
       </div>
     </section>
 
-    <section class="closing" aria-labelledby="closing-title">
+    <section class="closing" id="fikir" aria-labelledby="closing-title">
       <div class="wrap closing-inner">
         <h2 id="closing-title">Bir sonraki güzel fikir sende olabilir.</h2>
+        <p class="closing-lead" hidden>Aklındaki fikri, öneriyi ya da isteği yaz. Her mesajı okuyoruz.</p>
         <div class="closing-actions">
           <a class="button button-dark" href="#etkinlikler">Yaklaşan etkinliklere göz at <span class="arrow" aria-hidden="true">↗</span></a>
           <a class="text-link" id="idea-link" href="#" target="_blank" rel="noopener" hidden>Fikrini bize yaz <span class="arrow" aria-hidden="true">↗</span></a>
         </div>
+        <form class="idea-form" id="idea-form" novalidate hidden>
+          <div class="field">
+            <label for="idea-name">Adın <span class="optional">isteğe bağlı</span></label>
+            <input id="idea-name" name="name" type="text" maxlength="80" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="idea-contact">E-posta ya da telefon <span class="optional">isteğe bağlı</span></label>
+            <input id="idea-contact" name="contact" type="text" maxlength="120" autocomplete="email" placeholder="Sana dönmemizi istersen">
+          </div>
+          <div class="field">
+            <label for="idea-message">Fikrin</label>
+            <textarea id="idea-message" name="message" rows="5" maxlength="1500" required placeholder="Nasıl bir etkinlik, proje ya da konu görmek istersin?"></textarea>
+          </div>
+          <input class="trap" type="checkbox" name="botcheck" id="idea-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="button button-light" id="idea-submit" type="submit">Fikrimi gönder <span class="arrow" aria-hidden="true">↗</span></button>
+          <p class="form-status" id="idea-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>

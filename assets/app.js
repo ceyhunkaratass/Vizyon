@@ -137,5 +137,67 @@ fetch("data/site.json")
       link.hidden = false;
     }
     renderContacts(site.contacts || []);
+    setupIdeaForm(site.ideaFormKey);
   })
   .catch(() => {});
+
+function setupIdeaForm(key) {
+  key = (key || "").trim();
+  if (!/^[0-9a-f-]{20,}$/i.test(key)) return;
+
+  const form = document.querySelector("#idea-form");
+  const status = document.querySelector("#idea-status");
+  const submit = document.querySelector("#idea-submit");
+  document.querySelector(".closing").classList.add("closing--form");
+  document.querySelector(".closing-lead").hidden = false;
+  document.querySelector("#idea-link").hidden = true;
+  form.hidden = false;
+
+  const say = (text, kind) => {
+    status.textContent = text;
+    status.dataset.kind = kind || "";
+  };
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = form.message.value.trim();
+    if (message.length < 10) {
+      say("Fikrini biraz daha ayrıntılı yazar mısın? En az 10 karakter gerekli.", "error");
+      form.message.focus();
+      return;
+    }
+    if (form.botcheck.checked) {
+      say("Teşekkürler!", "ok");
+      return;
+    }
+
+    const contact = form.contact.value.trim();
+    const payload = {
+      access_key: key,
+      subject: "Vizyoner Gençlik sitesinden yeni fikir",
+      from_name: "Vizyoner Gençlik sitesi",
+      name: form.name.value.trim() || "İsimsiz",
+      iletisim: contact || "Belirtilmedi",
+      message,
+    };
+    if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact)) payload.email = contact;
+
+    submit.disabled = true;
+    say("Gönderiliyor…");
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.message || response.status);
+      form.reset();
+      say("Fikrin bize ulaştı, teşekkürler! Her mesajı okuyoruz.", "ok");
+    } catch (error) {
+      say("Gönderilemedi. İnternet bağlantını kontrol edip tekrar dene.", "error");
+    } finally {
+      submit.disabled = false;
+    }
+  });
+}

@@ -35,9 +35,18 @@ data/events.json    Yaklaşan etkinlikler ve arşiv
 
 `archive` (geçmiş) kaydında `day` ve `month` yerine `"date": "Mayıs 2026"` yazılır. `type`, `time`, `location`, `image`, `alt`, `link` ve `linkLabel` isteğe bağlıdır; fotoğraf yoksa kart yazıyla görünür. Arşivdeki arama kutusu etkinlik eklenince kendiliğinden belirir.
 
-## Fikir formu bağlantısı
+## Fikir formu (sitenin içinde)
 
-Sayfa sonundaki "Fikrini bize yaz" bağlantısı, `data/site.json` içindeki `ideaFormUrl` doluyken görünür. Örneğin bir Google Formlar adresi yazın (`https://` ile başlamalı); boş bırakırsanız bağlantı gizli kalır.
+Sayfa sonundaki "Fikrini gönder" formu [Web3Forms](https://web3forms.com) ile çalışır: gönderilen fikirler e-postanıza düşer. Açmak için:
+
+1. web3forms.com'da e-posta adresinizi yazın, "Create your Access Key" deyin. Anahtar e-postanıza gelir.
+2. Anahtarı `data/site.json` içindeki `ideaFormKey` alanına yazın.
+
+Anahtar boşken form gizli kalır. Bu anahtar sitede herkese açık durmak üzere tasarlanmıştır, gizli bir şifre değildir.
+
+## Eski fikir formu bağlantısı
+
+Form anahtarı (`ideaFormKey`) boşken, sayfa sonunda `data/site.json` içindeki `ideaFormUrl` adresine giden "Fikrini bize yaz" bağlantısı görünür (örneğin bir Google Formlar adresi, `https://` ile başlamalı). Anahtar girilince form açılır ve bu bağlantı gizlenir. İkisi de boşsa fikir bölümünde yalnızca etkinlik butonu kalır.
 
 ## İletişim bölümü
 
