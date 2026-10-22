@@ -197,12 +197,28 @@ function setupIdeaForm(key) {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = await response.json();
-      if (!response.ok || !result.success) throw new Error(result.message || response.status);
+      const raw = await response.text();
+      let result = {};
+      try {
+        result = JSON.parse(raw);
+      } catch (parseError) {
+        result = {};
+      }
+      if (!response.ok || !result.success) {
+        const reason = result.message || `sunucu yanıtı ${response.status}`;
+        const failure = new Error(reason);
+        failure.fromServer = true;
+        throw failure;
+      }
       form.reset();
       say("Fikrin bize ulaştı, teşekkürler! Her mesajı okuyoruz.", "ok");
     } catch (error) {
-      say("Gönderilemedi. İnternet bağlantını kontrol edip tekrar dene.", "error");
+      console.error("Fikir formu gönderilemedi:", error);
+      if (error.fromServer) {
+        say(`Gönderilemedi: ${error.message}. Bu mesajı topluluk yöneticisine iletirsen düzeltiriz.`, "error");
+      } else {
+        say("Sunucuya ulaşılamadı. İnternet bağlantını ya da reklam engelleyiciyi kontrol edip tekrar dene.", "error");
+      }
     } finally {
       submit.disabled = false;
     }
