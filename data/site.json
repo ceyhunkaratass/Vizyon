@@ -1,3 +1,9 @@
 {
-  "ideaFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfZng4pZ8FdyeDRg8qUO7iur4Qqwd6RuRAfIWvNGw6IGufiMA/viewform"
+  "ideaFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfZng4pZ8FdyeDRg8qUO7iur4Qqwd6RuRAfIWvNGw6IGufiMA/viewform",
+  "contacts": [
+    {
+      "label": "Web sitemiz",
+      "url": "https://vizyonergencliksite.vercel.app/"
+    }
+  ]
 }

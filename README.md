@@ -39,6 +39,16 @@ data/events.json    Yaklaşan etkinlikler ve arşiv
 
 Sayfa sonundaki "Fikrini bize yaz" bağlantısı, `data/site.json` içindeki `ideaFormUrl` doluyken görünür. Örneğin bir Google Formlar adresi yazın (`https://` ile başlamalı); boş bırakırsanız bağlantı gizli kalır.
 
+## İletişim bölümü
+
+"İletişim" bölümü `data/site.json` içindeki `contacts` listesinden oluşur. Yeni bağlantı eklemek için listeye bir satır yazın (adres `https://` ile başlamalı, `text` isteğe bağlıdır):
+
+```json
+{ "label": "Instagram", "url": "https://www.instagram.com/vizyonergenclik/", "text": "@vizyonergenclik" }
+```
+
+Liste boşsa bölüm ve menü bağlantısı gizli kalır.
+
 ## Yerelde çalıştırma
 
 Etkinlikler `fetch` ile yüklendiği için sayfa dosyaya çift tıklayarak değil, bir web sunucusuyla açılmalıdır:

@@ -100,6 +100,19 @@ function showLoadError() {
   searchBox.hidden = true;
 }
 
+function renderContacts(contacts) {
+  const items = contacts.filter((c) => c && /^https:\/\//i.test(c.url || ""));
+  if (items.length === 0) return;
+  document.querySelector("#contact-list").innerHTML = items
+    .map((c) => {
+      const shown = c.text || c.url.replace(/^https:\/\//i, "").replace(/\/$/, "");
+      return `<li><span class="contact-label">${esc(c.label)}</span><a class="contact-value" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(shown)} <span class="arrow" aria-hidden="true">↗</span></a></li>`;
+    })
+    .join("");
+  document.querySelector("#iletisim").hidden = false;
+  document.querySelectorAll("#nav-contact, .nav-contact-m").forEach((a) => (a.hidden = false));
+}
+
 searchInput.addEventListener("input", filterArchive);
 
 fetch("data/events.json")
@@ -118,9 +131,11 @@ fetch("data/site.json")
   .then((response) => (response.ok ? response.json() : {}))
   .then((site) => {
     const url = (site.ideaFormUrl || "").trim();
-    if (!/^https:\/\//i.test(url)) return;
-    const link = document.querySelector("#idea-link");
-    link.href = url;
-    link.hidden = false;
+    if (/^https:\/\//i.test(url)) {
+      const link = document.querySelector("#idea-link");
+      link.href = url;
+      link.hidden = false;
+    }
+    renderContacts(site.contacts || []);
   })
   .catch(() => {});
