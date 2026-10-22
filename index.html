@@ -175,14 +175,12 @@
 
     <section class="section" id="etkinlikler" aria-labelledby="upcoming-title">
       <div class="wrap">
-        <aside class="notice notice-box" aria-label="Örnek içerik bilgilendirmesi">
-          <span class="notice-mark" aria-hidden="true">✳</span><span>Bu bölümdeki etkinlik başlıkları ve tarihler örnektir; <code>data/events.json</code> dosyasına gerçek takvimi eklediğinizde yayına hazır.</span>
-        </aside>
         <div class="section-head" data-reveal>
           <div><p class="section-label">Takvimden</p><h2 id="upcoming-title">Sırada ne var?</h2></div>
           <a class="text-link" href="#arsiv">Geçmiş buluşmalara bak <span class="arrow" aria-hidden="true">↘</span></a>
         </div>
         <div class="upcoming" id="upcoming-list"></div>
+        <p class="empty-state" id="upcoming-empty" hidden>Yeni etkinlikler çok yakında duyurulacak. Takipte kal.</p>
       </div>
     </section>
 
@@ -190,15 +188,11 @@
       <div class="wrap">
         <div class="section-head" data-reveal>
           <div><p class="section-label">Birlikte yaptıklarımız</p><h2 id="archive-title">Buluşma arşivi</h2></div>
-          <p class="event-description">Güzel anlar, yeni fikirler ve birlikte atılan adımlar.</p>
-        </div>
-        <div class="archive-controls" data-reveal>
-          <div class="filters" id="archive-filters" role="group" aria-label="Etkinlikleri türe göre filtrele"></div>
-          <label class="search"><span class="search-icon" aria-hidden="true">⌕</span><input type="search" id="archive-search" aria-label="Etkinlik arşivinde ara" placeholder="Etkinliklerde ara" autocomplete="off"></label>
+          <label class="search" id="archive-controls" hidden><span class="search-icon" aria-hidden="true">⌕</span><input type="search" id="archive-search" aria-label="Etkinlik arşivinde ara" placeholder="Etkinliklerde ara" autocomplete="off"></label>
         </div>
         <div class="archive-grid" id="archive-grid"></div>
-        <p class="empty-state" id="empty-state" role="status">Bu aramayla eşleşen bir buluşma bulunamadı.</p>
-        <p class="sample-note" id="sample-note">Arşivdeki etkinlik adları ve tarihleri örnek içeriktir.</p>
+        <p class="empty-state" id="archive-empty" hidden>Henüz arşivlenmiş bir buluşma yok. Etkinliklerimiz gerçekleştikçe burada paylaşılacak.</p>
+        <p class="empty-state" id="search-empty" hidden role="status">Bu aramayla eşleşen bir buluşma bulunamadı.</p>
       </div>
     </section>
 

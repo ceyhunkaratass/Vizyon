@@ -9,20 +9,30 @@ index.html          Sayfa içeriği (amaç, değerler, yaklaşım, akademik yap�
 assets/style.css    Tüm stiller
 assets/logo.png     Topluluk logosu (üst/alt köşe ve sekme simgesi)
 assets/hero-logo.jpg Ana sayfadaki büyük logo
-assets/app.js       Etkinlik kartlarını ve arşiv filtresini üretir
+assets/app.js       Etkinlik kartlarını ve arşiv aramasını üretir
 data/events.json    Yaklaşan etkinlikler ve arşiv
 ```
 
 ## Etkinlik eklemek
 
-`data/events.json` dosyasını düzenleyin; sayfada başka bir şey değiştirmenize gerek yok.
+`data/events.json` dosyasını düzenleyin; sayfada başka bir şey değiştirmenize gerek yok. Liste boşken sayfada "yakında duyurulacak" yazısı görünür.
 
-- `upcoming`: yaklaşan etkinlikler (`day`, `month`, `location` alanlarıyla)
-- `archive`: geçmiş etkinlikler (`date` alanıyla, örn. `"Mayıs"`)
-- `categories`: filtre düğmeleri; yeni tür eklemek için buraya `id` ve `label` ekleyin
-- Gerçek etkinliklerde `"sample": true` satırını silin; "ÖRNEK" etiketleri kaybolur
+`upcoming` (yaklaşan) kaydı örneği:
 
-Şu an tüm etkinlikler örnek içeriktir.
+```json
+{
+  "title": "Etkinlik adı",
+  "day": "24",
+  "month": "EKİ",
+  "type": "Atölye",
+  "location": "Malatya Turgut Özal Üniversitesi",
+  "description": "Kısa açıklama.",
+  "image": "assets/etkinlik.jpg",
+  "alt": "Fotoğrafın açıklaması"
+}
+```
+
+`archive` (geçmiş) kaydında `day` ve `month` yerine `"date": "Mayıs 2026"` yazılır. `type`, `location`, `image` ve `alt` isteğe bağlıdır; fotoğraf yoksa kart yazıyla görünür. Arşivdeki arama kutusu etkinlik eklenince kendiliğinden belirir.
 
 ## Fikir formu bağlantısı
 
