@@ -219,12 +219,12 @@
         </div>
         <form class="idea-form" id="idea-form" novalidate hidden>
           <div class="field">
-            <label for="idea-name">Adın <span class="optional">isteğe bağlı</span></label>
-            <input id="idea-name" name="name" type="text" maxlength="80" autocomplete="name">
+            <label for="idea-name">Ad soyad</label>
+            <input id="idea-name" name="name" type="text" maxlength="80" autocomplete="name" required placeholder="Adın ve soyadın">
           </div>
           <div class="field">
-            <label for="idea-contact">E-posta ya da telefon <span class="optional">isteğe bağlı</span></label>
-            <input id="idea-contact" name="contact" type="text" maxlength="120" autocomplete="email" placeholder="Sana dönmemizi istersen">
+            <label for="idea-email">E-posta</label>
+            <input id="idea-email" name="email" type="email" maxlength="120" autocomplete="email" inputmode="email" required placeholder="ornek@mail.com">
           </div>
           <div class="field">
             <label for="idea-message">Fikrin</label>

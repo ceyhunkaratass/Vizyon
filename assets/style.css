@@ -177,6 +177,7 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .idea-form input[type="text"], .idea-form textarea { width: 100%; padding: 12px 14px; border: 1px solid rgb(255 255 255 / 20%); border-radius: 0; color: #fff; background: rgb(255 255 255 / 6%); font-size: 14px; line-height: 1.5; }
 .idea-form textarea { min-height: 128px; resize: vertical; }
 .idea-form input::placeholder, .idea-form textarea::placeholder { color: rgb(255 255 255 / 45%); }
+.idea-form [aria-invalid="true"] { border-color: #fca5a5; }
 .idea-form input:focus-visible, .idea-form textarea:focus-visible { border-color: #a5b4fc; outline: 3px solid rgb(165 180 252 / 35%); outline-offset: 0; }
 .trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .button-light { justify-self: start; color: #120a2e; background: #fff; border: 0; cursor: pointer; }

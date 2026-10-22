@@ -160,27 +160,34 @@ function setupIdeaForm(key) {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    const name = form.name.value.trim().replace(/\s+/g, " ");
+    const email = form.email.value.trim();
     const message = form.message.value.trim();
-    if (message.length < 10) {
-      say("Fikrini biraz daha ayrıntılı yazar mısın? En az 10 karakter gerekli.", "error");
-      form.message.focus();
-      return;
-    }
+
+    const fail = (field, text) => {
+      form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
+      field.setAttribute("aria-invalid", "true");
+      say(text, "error");
+      field.focus();
+    };
+    if (name.split(" ").filter((part) => part.length > 1).length < 2) return fail(form.name, "Adını ve soyadını birlikte yazar mısın?");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return fail(form.email, "Geçerli bir e-posta adresi yazar mısın? Sana bu adresten dönebiliriz.");
+    if (message.length < 10) return fail(form.message, "Fikrini biraz daha ayrıntılı yazar mısın? En az 10 karakter gerekli.");
+    form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
+
     if (form.botcheck.checked) {
       say("Teşekkürler!", "ok");
       return;
     }
 
-    const contact = form.contact.value.trim();
     const payload = {
       access_key: key,
       subject: "Vizyoner Gençlik sitesinden yeni fikir",
       from_name: "Vizyoner Gençlik sitesi",
-      name: form.name.value.trim() || "İsimsiz",
-      iletisim: contact || "Belirtilmedi",
+      name,
+      email,
       message,
     };
-    if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact)) payload.email = contact;
 
     submit.disabled = true;
     say("Gönderiliyor…");
