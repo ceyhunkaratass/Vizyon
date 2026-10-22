@@ -82,8 +82,17 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 
 .upcoming { display: grid; grid-template-columns: 1.45fr 1fr 1fr; gap: 20px; }
 .event-card { min-width: 0; }
+.event-link { margin-top: 18px; }
+.upcoming--single { grid-template-columns: 1fr; }
+.upcoming--single .event-card { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); align-items: center; gap: 48px; }
+.upcoming--single .event-photo { aspect-ratio: auto; border: 1px solid var(--line); }
+.upcoming--single .date-tag { display: none; }
+.upcoming--single .event-photo img { height: auto; }
+.upcoming--single .event-meta { margin-top: 0; font-size: 12px; }
+.upcoming--single h3 { font-size: clamp(28px, 3.4vw, 40px); }
+.upcoming--single .event-description { max-width: 560px; font-size: 15px; }
 .event-photo { position: relative; display: block; overflow: hidden; background: var(--surface); aspect-ratio: 1.45 / 1; }
-.event-photo img, .archive-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 380ms ease; }
+.event-photo img, .archive-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 380ms ease; }
 .event-card:hover .event-photo img, .archive-card:hover .archive-photo img { transform: scale(1.035); }
 .date-tag { position: absolute; top: 12px; left: 12px; display: grid; place-content: center; width: 55px; height: 57px; color: #fff; background: var(--grad); text-align: center; }
 .date-tag strong { font-family: var(--display); font-size: 21px; line-height: 1; }
@@ -168,6 +177,7 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   .section { padding: 70px 0; }
   .upcoming { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 16px; }
   .event-card:first-child { grid-column: 1 / -1; }
+  .upcoming--single .event-card { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; }
   .about-inner { grid-template-columns: 1fr; gap: 24px; }
   .approach { grid-template-columns: 1fr; gap: 28px; }
   .value-row { grid-template-columns: 28px 1fr; gap: 6px 18px; }
@@ -194,7 +204,9 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   .structure-tiles { gap: 10px; }
   .structure-tile { padding: 24px 10px; }
   .event-card:first-child { grid-column: auto; }
+  .upcoming--single .event-card { grid-template-columns: 1fr; gap: 20px; }
   .event-photo, .archive-photo { aspect-ratio: 1.5 / 1; }
+  .upcoming--single .event-photo { aspect-ratio: auto; }
   .event-card h3 { font-size: 20px; }
   .search input { width: 100%; }
   .search { width: 100%; }

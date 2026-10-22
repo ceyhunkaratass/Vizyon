@@ -1,4 +1,18 @@
 {
-  "upcoming": [],
+  "upcoming": [
+    {
+      "title": "Teknoloji ve Kariyer Buluşması",
+      "day": "24",
+      "month": "EKİ",
+      "type": "Hibrit · Yüz yüze + çevrimiçi",
+      "time": "24 Ekim 2026 · Cumartesi · 10:00",
+      "location": "İnönü Üniversitesi İlahiyat Fakültesi (Eski TED Koleji arkası), Malatya",
+      "description": "Kariyerine yön ver. Sektörel farkındalığını artır, vizyonunu genişlet. Birbirinden değerli 6 konuşmacıyla açılış ve vizyon paylaşımı, interaktif sektör oturumları, canlı bağlantılar ve soru-cevap bölümü. Etkinlik hem yüz yüze hem çevrimiçi (hibrit) yapılacak.",
+      "image": "assets/afis-teknoloji-kariyer.jpg",
+      "alt": "Teknoloji ve Kariyer Buluşması etkinlik afişi: 24 Ekim 2026, Cumartesi 10:00, 6 konuşmacı",
+      "link": "assets/afis-teknoloji-kariyer.jpg",
+      "linkLabel": "Afişin tamamını aç"
+    }
+  ],
   "archive": []
 }

@@ -25,6 +25,7 @@ data/events.json    Yaklaşan etkinlikler ve arşiv
   "day": "24",
   "month": "EKİ",
   "type": "Atölye",
+  "time": "Cumartesi · 10:00",
   "location": "Malatya Turgut Özal Üniversitesi",
   "description": "Kısa açıklama.",
   "image": "assets/etkinlik.jpg",
@@ -32,7 +33,7 @@ data/events.json    Yaklaşan etkinlikler ve arşiv
 }
 ```
 
-`archive` (geçmiş) kaydında `day` ve `month` yerine `"date": "Mayıs 2026"` yazılır. `type`, `location`, `image` ve `alt` isteğe bağlıdır; fotoğraf yoksa kart yazıyla görünür. Arşivdeki arama kutusu etkinlik eklenince kendiliğinden belirir.
+`archive` (geçmiş) kaydında `day` ve `month` yerine `"date": "Mayıs 2026"` yazılır. `type`, `time`, `location`, `image`, `alt`, `link` ve `linkLabel` isteğe bağlıdır; fotoğraf yoksa kart yazıyla görünür. Arşivdeki arama kutusu etkinlik eklenince kendiliğinden belirir.
 
 ## Fikir formu bağlantısı
 

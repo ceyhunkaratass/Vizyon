@@ -28,12 +28,16 @@ function renderUpcoming(events) {
       return `
       <article class="event-card" data-reveal>
         ${photo("event-photo", e, tag)}
-        ${meta([e.type, e.location])}
-        <h3>${esc(e.title)}</h3>
-        <p class="event-description">${esc(e.description)}</p>
+        <div class="event-body">
+          ${meta([e.type, e.time, e.location])}
+          <h3>${esc(e.title)}</h3>
+          <p class="event-description">${esc(e.description)}</p>
+          ${e.link && /^(https:\/\/|assets\/)/.test(e.link) ? `<a class="text-link event-link" href="${esc(e.link)}" target="_blank" rel="noopener">${esc(e.linkLabel || "Ayrıntılar")} <span class="arrow" aria-hidden="true">↗</span></a>` : ""}
+        </div>
       </article>`;
     })
     .join("");
+  upcomingEl.classList.toggle("upcoming--single", events.length === 1);
   upcomingEl.hidden = events.length === 0;
   upcomingEmpty.hidden = events.length > 0;
 }
