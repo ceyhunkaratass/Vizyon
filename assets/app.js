@@ -173,6 +173,7 @@ function setupIdeaForm(key) {
     if (name.split(" ").filter((part) => part.length > 1).length < 2) return fail(form.name, "Adını ve soyadını birlikte yazar mısın?");
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return fail(form.email, "Geçerli bir e-posta adresi yazar mısın? Sana bu adresten dönebiliriz.");
     if (message.length < 10) return fail(form.message, "Fikrini biraz daha ayrıntılı yazar mısın? En az 10 karakter gerekli.");
+    if (!form.consent.checked) return fail(form.consent, "Göndermek için aydınlatma metnini okuyup onay kutusunu işaretlemen gerekiyor.");
     form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
 
     if (form.botcheck.checked) {
@@ -187,6 +188,7 @@ function setupIdeaForm(key) {
       name,
       email,
       message,
+      consent: "KVKK aydınlatma metni okundu, açık rıza verildi",
     };
 
     submit.disabled = true;

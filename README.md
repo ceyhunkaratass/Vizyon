@@ -43,6 +43,8 @@ Sayfa sonundaki "Fikrini gönder" formu [Web3Forms](https://web3forms.com) ile �
 1. web3forms.com'da e-posta adresinizi yazın, "Create your Access Key" deyin. Anahtar e-postanıza gelir.
 2. Anahtarı `data/site.json` içindeki `ideaFormKey` alanına yazın.
 
+Formda KVKK onay kutusu ve açılır aydınlatma metni vardır (metin `index.html` içinde, `.kvkk-body` bölümünde; veri sorumlusu bilgisini ve saklama süresini kendi topluluğunuza göre gözden geçirin). Onay kutusu işaretlenmeden form gönderilmez.
+
 Anahtar boşken form gizli kalır. Bu anahtar sitede herkese açık durmak üzere tasarlanmıştır, gizli bir şifre değildir.
 
 ## Eski fikir formu bağlantısı

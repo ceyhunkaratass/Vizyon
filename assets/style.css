@@ -224,11 +224,20 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .field { display: grid; gap: 8px; }
 .field label { font-size: 12px; font-weight: 700; letter-spacing: .02em; }
 .optional { margin-left: 6px; color: var(--muted); font-weight: 500; }
-.idea-form input[type="text"], .idea-form textarea { width: 100%; padding: 12px 14px; border: 1px solid rgb(255 255 255 / 20%); border-radius: 0; color: #fff; background: rgb(255 255 255 / 6%); font-size: 14px; line-height: 1.5; }
+.idea-form input[type="text"], .idea-form input[type="email"], .idea-form textarea { font-family: inherit; width: 100%; padding: 12px 14px; border: 1px solid rgb(255 255 255 / 20%); border-radius: 0; color: #fff; background: rgb(255 255 255 / 6%); font-size: 14px; line-height: 1.5; }
 .idea-form textarea { min-height: 128px; resize: vertical; }
 .idea-form input::placeholder, .idea-form textarea::placeholder { color: rgb(255 255 255 / 45%); }
 .idea-form [aria-invalid="true"] { border-color: #fca5a5; }
 .idea-form input:focus-visible, .idea-form textarea:focus-visible { border-color: #a5b4fc; outline: 3px solid rgb(165 180 252 / 35%); outline-offset: 0; }
+.consent { display: grid; gap: 10px; }
+.consent-check { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: 13px; line-height: 1.55; cursor: pointer; }
+.consent-check input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); cursor: pointer; }
+.consent-check input:focus-visible { outline: 3px solid rgb(165 180 252 / 45%); outline-offset: 2px; }
+.consent-check input[aria-invalid="true"] { outline: 2px solid #fca5a5; outline-offset: 2px; }
+.kvkk summary { width: fit-content; color: #c4b5fd; font-size: 12px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.kvkk summary:focus-visible { outline: 3px solid rgb(165 180 252 / 45%); outline-offset: 3px; }
+.kvkk-body { display: grid; gap: 8px; max-height: 220px; margin-top: 10px; padding: 12px 14px; overflow: auto; border: 1px solid rgb(255 255 255 / 14%); background: rgb(255 255 255 / 4%); color: rgb(255 255 255 / 82%); font-size: 12px; line-height: 1.6; }
+.kvkk-body p { margin: 0; }
 .trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .button-light { justify-self: start; color: #120a2e; background: #fff; border: 0; cursor: pointer; }
 .button-light:hover { background: #dbe4ff; }
