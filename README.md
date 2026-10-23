@@ -9,6 +9,7 @@ index.html          Sayfa içeriği (amaç, değerler, yaklaşım, akademik yap�
 assets/style.css    Tüm stiller
 assets/logo.png     Topluluk logosu (üst/alt köşe ve sekme simgesi)
 assets/hero-logo.jpg Ana sayfadaki büyük logo
+assets/fonts/       Sitenin kendi yazı tipleri (DM Sans, Space Grotesk, Dancing Script; SIL OFL 1.1)
 assets/app.js       Etkinlik kartlarını ve arşiv aramasını üretir
 data/events.json    Yaklaşan etkinlikler ve arşiv
 ```
