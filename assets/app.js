@@ -158,6 +158,13 @@ function setupIdeaForm(key) {
     status.dataset.kind = kind || "";
   };
 
+  const dialog = document.querySelector("#kvkk-dialog");
+  document.querySelector("#kvkk-open").addEventListener("click", () => dialog.showModal());
+  document.querySelector("#kvkk-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const name = form.name.value.trim().replace(/\s+/g, " ");

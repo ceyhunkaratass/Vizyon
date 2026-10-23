@@ -229,15 +229,27 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .idea-form input::placeholder, .idea-form textarea::placeholder { color: rgb(255 255 255 / 45%); }
 .idea-form [aria-invalid="true"] { border-color: #fca5a5; }
 .idea-form input:focus-visible, .idea-form textarea:focus-visible { border-color: #a5b4fc; outline: 3px solid rgb(165 180 252 / 35%); outline-offset: 0; }
-.consent { display: grid; gap: 10px; }
-.consent-check { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: 13px; line-height: 1.55; cursor: pointer; }
-.consent-check input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); cursor: pointer; }
+.consent-check { display: grid; grid-template-columns: 18px 1fr; gap: 12px; align-items: start; }
+.consent-check p { margin: 0; color: rgb(255 255 255 / 80%); font-size: 13px; line-height: 1.55; }
+.consent-check label { cursor: pointer; }
+.consent-check input { appearance: none; width: 18px; height: 18px; margin: 1px 0 0; border: 1px solid rgb(255 255 255 / 35%); border-radius: 0; background: rgb(255 255 255 / 6%); cursor: pointer; }
+.consent-check input:checked { border-color: transparent; background: var(--grad) center / 100% 100% no-repeat; box-shadow: inset 0 0 0 2px rgb(7 4 15 / 0%); }
+.consent-check input:checked::after { display: block; width: 5px; height: 9px; margin: 2px 0 0 6px; border: solid #fff; border-width: 0 2px 2px 0; content: ""; transform: rotate(45deg); }
 .consent-check input:focus-visible { outline: 3px solid rgb(165 180 252 / 45%); outline-offset: 2px; }
-.consent-check input[aria-invalid="true"] { outline: 2px solid #fca5a5; outline-offset: 2px; }
-.kvkk summary { width: fit-content; color: #c4b5fd; font-size: 12px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
-.kvkk summary:focus-visible { outline: 3px solid rgb(165 180 252 / 45%); outline-offset: 3px; }
-.kvkk-body { display: grid; gap: 8px; max-height: 220px; margin-top: 10px; padding: 12px 14px; overflow: auto; border: 1px solid rgb(255 255 255 / 14%); background: rgb(255 255 255 / 4%); color: rgb(255 255 255 / 82%); font-size: 12px; line-height: 1.6; }
+.consent-check input[aria-invalid="true"] { border-color: #fca5a5; box-shadow: 0 0 0 2px rgb(252 165 165 / 35%); }
+.kvkk-open { padding: 0; border: 0; color: #c4b5fd; background: none; font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.kvkk-open:hover { color: #fff; }
+.kvkk-open:focus-visible, .kvkk-close:focus-visible { outline: 3px solid rgb(165 180 252 / 45%); outline-offset: 3px; }
+.kvkk-dialog { width: min(560px, calc(100% - 32px)); max-height: min(80vh, 640px); padding: 0; overflow: hidden; border: 1px solid var(--line); color: var(--ink); background: var(--surface); box-shadow: 0 30px 80px rgb(0 0 0 / 60%); }
+.kvkk-dialog[open] { display: grid; grid-template-rows: auto 1fr; }
+.kvkk-dialog::backdrop { background: rgb(4 2 10 / 72%); backdrop-filter: blur(3px); }
+.kvkk-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+.kvkk-head h2 { margin: 0; font: 700 18px/1.3 var(--display); }
+.kvkk-close { width: 36px; height: 36px; border: 0; color: var(--ink); background: rgb(255 255 255 / 8%); font-size: 22px; line-height: 1; cursor: pointer; }
+.kvkk-close:hover { background: rgb(255 255 255 / 16%); }
+.kvkk-body { display: grid; gap: 12px; padding: 20px 22px 24px; overflow: auto; color: rgb(255 255 255 / 82%); font-size: 14px; line-height: 1.65; }
 .kvkk-body p { margin: 0; }
+.kvkk-body strong { color: #fff; }
 .trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .button-light { justify-self: start; color: #120a2e; background: #fff; border: 0; cursor: pointer; }
 .button-light:hover { background: #dbe4ff; }

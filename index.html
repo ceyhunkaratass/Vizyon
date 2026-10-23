@@ -228,23 +228,9 @@
             <label for="idea-message">Fikrin</label>
             <textarea id="idea-message" name="message" rows="5" maxlength="1500" required placeholder="Nasıl bir etkinlik, proje ya da konu görmek istersin?"></textarea>
           </div>
-          <div class="consent">
-            <label class="consent-check" for="idea-consent">
-              <input id="idea-consent" name="consent" type="checkbox" required>
-              <span>Aydınlatma metnini okudum; adım, e-posta adresim ve mesajımın fikrimi değerlendirmek amacıyla işlenmesine onay veriyorum.</span>
-            </label>
-            <details class="kvkk">
-              <summary>KVKK aydınlatma metnini oku</summary>
-              <div class="kvkk-body">
-                <p><strong>Veri sorumlusu:</strong> Malatya Turgut Özal Üniversitesi Vizyoner Gençlik topluluğu.</p>
-                <p><strong>İşlenen veriler:</strong> Formda yazdığın ad soyad, e-posta adresi ve fikir metni.</p>
-                <p><strong>Amaç:</strong> Fikrini değerlendirmek, etkinlik ve proje planlamasında kullanmak ve gerekirse sana e-posta ile dönmek. Verilerin bunun dışında kullanılmaz, satılmaz ve reklam için paylaşılmaz.</p>
-                <p><strong>Hukuki sebep:</strong> Açık rızan (6698 sayılı KVKK m. 5/1). Rızanı istediğin zaman geri alabilirsin.</p>
-                <p><strong>Aktarım:</strong> Form, mesajları e-postayla iletmek için yurt dışında bulunan Web3Forms hizmeti üzerinden gönderilir. Formu göndererek bu aktarıma da açık rıza vermiş olursun.</p>
-                <p><strong>Saklama:</strong> Veriler, fikrin değerlendirilip sana dönüş yapılması için gereken süre boyunca saklanır, ardından silinir.</p>
-                <p><strong>Hakların:</strong> KVKK m. 11 uyarınca verilerinin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme gibi haklara sahipsin. Başvuru için "İletişim" bölümündeki bağlantılardan bize ulaşabilirsin.</p>
-              </div>
-            </details>
+          <div class="consent-check">
+            <input id="idea-consent" name="consent" type="checkbox" required>
+            <p><label for="idea-consent">Bilgilerimin fikrimi değerlendirmek için işlenmesine onay veriyorum.</label> <button class="kvkk-open" id="kvkk-open" type="button">Aydınlatma metni</button></p>
           </div>
           <input class="trap" type="checkbox" name="botcheck" id="idea-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="button button-light" id="idea-submit" type="submit">Fikrimi gönder <span class="arrow" aria-hidden="true">↗</span></button>
@@ -261,6 +247,22 @@
       <a class="footer-top" href="#ana-sayfa">Başa dön ↑</a>
     </div>
   </footer>
+
+  <dialog class="kvkk-dialog" id="kvkk-dialog" aria-labelledby="kvkk-title">
+    <div class="kvkk-head">
+      <h2 id="kvkk-title">KVKK Aydınlatma Metni</h2>
+      <button class="kvkk-close" id="kvkk-close" type="button" aria-label="Kapat">×</button>
+    </div>
+    <div class="kvkk-body">
+          <p><strong>Veri sorumlusu:</strong> Malatya Turgut Özal Üniversitesi Vizyoner Gençlik topluluğu.</p>
+          <p><strong>İşlenen veriler:</strong> Formda yazdığın ad soyad, e-posta adresi ve fikir metni.</p>
+          <p><strong>Amaç:</strong> Fikrini değerlendirmek, etkinlik ve proje planlamasında kullanmak ve gerekirse sana e-posta ile dönmek. Verilerin bunun dışında kullanılmaz, satılmaz ve reklam için paylaşılmaz.</p>
+          <p><strong>Hukuki sebep:</strong> Açık rızan (6698 sayılı KVKK m. 5/1). Rızanı istediğin zaman geri alabilirsin.</p>
+          <p><strong>Aktarım:</strong> Form, mesajları e-postayla iletmek için yurt dışında bulunan Web3Forms hizmeti üzerinden gönderilir. Formu göndererek bu aktarıma da açık rıza vermiş olursun.</p>
+          <p><strong>Saklama:</strong> Veriler, fikrin değerlendirilip sana dönüş yapılması için gereken süre boyunca saklanır, ardından silinir.</p>
+          <p><strong>Hakların:</strong> KVKK m. 11 uyarınca verilerinin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme gibi haklara sahipsin. Başvuru için "İletişim" bölümündeki bağlantılardan bize ulaşabilirsin.</p>
+    </div>
+  </dialog>
 
   <script src="assets/app.js"></script>
 </body>
