@@ -6,7 +6,7 @@
       "date": "24 Ekim 2026",
       "type": "Hibrit · Yüz yüze + çevrimiçi",
       "location": "İnönü Üniversitesi Eski TED Koleji İlahiyat Fakültesi Arkası, Malatya",
-      "description": "Kariyere yön veren, sektörel farkındalığı artıran, vizyon genişleten bir buluşmaydı. 24 Ekim 2026 Cumartesi günü İnönü Üniversitesi Eski TED Koleji İlahiyat Fakültesi Arkası'nda hem yüz yüze hem çevrimiçi (hibrit) olarak gerçekleştirdik. 6 konuşmacıyla açılış ve vizyon paylaşımı, interaktif sektör oturumları, canlı bağlantılar ve soru-cevap bölümü yaptık. Konuşmacılar yapay zekâ güvenliğinden yapay zekâ çağında yazılımcılığa, siber güvenlik ve sosyal mühendislikten bulut altyapısına ve güncel IT sektöründeki mesleklere kadar geniş bir yelpazede deneyimlerini ve kariyer yolculuklarını paylaştı. Salonu dolduran öğrencilerimiz soru sordu, canlı bağlantıdaki konuşmacılarla sohbet etti. Katılan ve izleyen herkese, konuşmacılarımıza ve emeği geçen ekibe teşekkürler.",
+      "description": "Kariyere yön veren, sektörel farkındalığı artıran, vizyon genişleten bir buluşmaydı. 24 Ekim 2026 Cumartesi günü İnönü Üniversitesi Eski TED Koleji İlahiyat Fakültesi Arkası'nda hem yüz yüze hem çevrimiçi (hibrit) olarak gerçekleştirdik. Yunus Emre Alpu, Yasin Özmen, Cihan Özhan, Uğur Çetinkaya, Emrullah Keser ve Hakan Duyar olmak üzere 6 konuşmacıyla açılış ve vizyon paylaşımı, interaktif sektör oturumları, canlı bağlantılar ve soru-cevap bölümü yaptık. Konuşmacılar yapay zekâ güvenliğinden yapay zekâ çağında yazılımcılığa, siber güvenlik ve sosyal mühendislikten bulut altyapısına ve güncel IT sektöründeki mesleklere kadar geniş bir yelpazede deneyimlerini ve kariyer yolculuklarını paylaştı. Salonu dolduran öğrencilerimiz soru sordu, canlı bağlantıdaki konuşmacılarla sohbet etti. Katılan ve izleyen herkese, konuşmacılarımıza ve emeği geçen ekibe teşekkürler.",
       "image": "assets/etkinlik/teknoloji-kariyer-kalabalik.jpg",
       "alt": "Teknoloji ve Kariyer Buluşması'na katılan öğrencilerin ve organizatörlerin sahnede çekilmiş toplu fotoğrafı",
       "galleryTitle": "Etkinlikten kareler",
@@ -19,7 +19,12 @@
         {
           "src": "assets/etkinlik/teknoloji-kariyer-hakan.jpg",
           "alt": "Perdeye yansıtılan sunum: Odyoloji mezunu birinin kamu kurumlarında yazılım geliştireceğini tahmin eder miydiniz? Yanda çevrimiçi konuşmacı ve salon görüntüsü",
-          "caption": "Hakan: \"Peki, buraya nasıl geldim?\""
+          "caption": "Hakan Duyar: \"Peki, buraya nasıl geldim?\""
+        },
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-salon.jpg",
+          "alt": "Salondan sahneye bakış: perdede \"Deneyimin yokken ilk fırsatı bulmak\" başlıklı slayt, yanında çevrimiçi konuşmacı; öğrenciler koltuklarında",
+          "caption": "Hakan Duyar: \"Deneyimin yokken ilk fırsatı bulmak\""
         },
         {
           "src": "assets/etkinlik/teknoloji-kariyer-cihan-ozhan.jpg",
@@ -28,8 +33,8 @@
         },
         {
           "src": "assets/etkinlik/teknoloji-kariyer-emrullah-keser.jpg",
-          "alt": "Perdede \"Kod değil, ikna.\" başlıklı siber söyleşi slaytı; sahnede mikrofonla konuşan Emrullah Keser",
-          "caption": "Emrullah Keser: \"Kod değil, ikna.\""
+          "alt": "Kürsünün yanında mikrofonla konuşan Emrullah Keser; arkadaki perdede kendini tanıttığı slayt",
+          "caption": "Emrullah Keser: siber güvenlik ve yapay zekâ"
         },
         {
           "src": "assets/etkinlik/teknoloji-kariyer-yunus-emre-alpu.jpg",
@@ -39,7 +44,7 @@
         {
           "src": "assets/etkinlik/teknoloji-kariyer-guncel-it.jpg",
           "alt": "Sahnede konuşmacı ve perdede Güncel IT Sektörü başlıklı meslek listesi",
-          "caption": "Güncel IT sektöründeki meslek dalları"
+          "caption": "Uğur Çetinkaya: güncel IT sektöründeki meslek dalları"
         },
         {
           "src": "assets/etkinlik/teknoloji-kariyer-yasin-ozmen.jpg",

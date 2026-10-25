@@ -217,7 +217,7 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .lightbox[open] { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; }
 .lightbox::backdrop { background: rgb(4 2 10 / 90%); backdrop-filter: blur(4px); }
 .lightbox-figure { margin: 0; text-align: center; }
-.lightbox-img { display: block; max-width: 100%; max-height: 78vh; margin: 0 auto; object-fit: contain; }
+.lightbox-img { display: block; width: min(100%, 138vh); aspect-ratio: 16 / 9; margin: 0 auto; object-fit: contain; background: #000; }
 .lightbox-caption { margin-top: 12px; color: rgb(255 255 255 / 80%); font-size: 14px; line-height: 1.5; }
 .lightbox-nav, .lightbox-close { width: 44px; height: 44px; border: 0; color: #fff; background: rgb(255 255 255 / 10%); font-size: 28px; line-height: 1; cursor: pointer; }
 .lightbox-nav:hover, .lightbox-close:hover { background: rgb(255 255 255 / 20%); }
