@@ -163,6 +163,7 @@ function showLoadError() {
 const CONTACT_ICONS = {
   instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>',
   whatsapp: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 18.8L4 20z"/><path d="M9.2 8.6c.2-.4.5-.4.8-.3l.7 1.5c.1.3 0 .5-.2.7l-.5.6c.7 1.3 1.8 2.3 3.1 3l.7-.7c.2-.2.5-.2.7-.1l1.4.7c.3.2.3.5.2.8-.4 1-1.5 1.5-2.5 1.2-2.5-.7-4.5-2.7-5.3-5.2-.2-.8 0-1.6.9-2.2z" fill="currentColor" stroke="none"/></svg>',
+  uye: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.4-3.2 2.6-5 5.5-5s5.1 1.8 5.5 5"/><path d="M16 5.6a3 3 0 0 1 0 5.8M17.5 14.4c2 .5 3.2 2.1 3.5 4.6"/></svg>',
   web: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5S9.6 5.9 12 3.5z"/></svg>',
 };
 
@@ -173,7 +174,7 @@ function renderContacts(contacts) {
     .map((c) => {
       const shown = c.text || c.url.replace(/^https:\/\//i, "").replace(/\/$/, "");
       const icon = CONTACT_ICONS[c.type] || CONTACT_ICONS.web;
-      return `<li><a class="contact-card" href="${esc(c.url)}" target="_blank" rel="noopener"><span class="contact-icon">${icon}</span><span class="contact-text"><span class="contact-label">${esc(c.label)}</span><span class="contact-value">${esc(shown)}</span></span><span class="arrow" aria-hidden="true">↗</span></a></li>`;
+      return `<li><a class="contact-card${c.featured ? " contact-card--featured" : ""}" href="${esc(c.url)}" target="_blank" rel="noopener"><span class="contact-icon">${icon}</span><span class="contact-text"><span class="contact-label">${esc(c.label)}</span><span class="contact-value">${esc(shown)}</span></span><span class="arrow" aria-hidden="true">↗</span></a></li>`;
     })
     .join("");
   document.querySelector("#iletisim").hidden = false;
@@ -202,6 +203,12 @@ fetch("data/site.json")
       const link = document.querySelector("#idea-link");
       link.href = url;
       link.hidden = false;
+    }
+    const member = (site.memberUrl || "").trim();
+    if (/^https:\/\//i.test(member)) {
+      const cta = document.querySelector("#member-cta");
+      cta.href = member;
+      cta.hidden = false;
     }
     renderContacts(site.contacts || []);
     setupIdeaForm(site.ideaFormKey);

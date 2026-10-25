@@ -3,6 +3,13 @@
   "ideaFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfZng4pZ8FdyeDRg8qUO7iur4Qqwd6RuRAfIWvNGw6IGufiMA/viewform",
   "contacts": [
     {
+      "type": "uye",
+      "featured": true,
+      "label": "Üniversite topluluk sayfamız",
+      "url": "https://okul.ozal.edu.tr/topluluklar/19/",
+      "text": "Göz at ve üye ol"
+    },
+    {
       "type": "instagram",
       "label": "Instagram",
       "url": "https://www.instagram.com/vizyoner.genclik/",
@@ -20,5 +27,6 @@
       "url": "https://vizyonergencliksite.vercel.app/",
       "text": "Web sitemizi ziyaret et"
     }
-  ]
+  ],
+  "memberUrl": "https://okul.ozal.edu.tr/topluluklar/19/"
 }

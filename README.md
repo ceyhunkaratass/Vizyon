@@ -59,7 +59,7 @@ Form anahtarı (`ideaFormKey`) boşken, sayfa sonunda `data/site.json` içindeki
 { "type": "instagram", "label": "Instagram", "url": "https://www.instagram.com/vizyoner.genclik/", "text": "@vizyoner.genclik" }
 ```
 
-Her bağlantı ayrı bir kart olarak alt alta görünür. `type` simgeyi belirler (`instagram`, `whatsapp`, `web`; yazılmazsa web simgesi çıkar). Liste boşsa bölüm ve menü bağlantısı gizli kalır.
+Her bağlantı ayrı bir kart olarak alt alta görünür. `type` simgeyi belirler (`instagram`, `whatsapp`, `web`; yazılmazsa web simgesi çıkar). `"featured": true` yazılan kart renkli ve öne çıkan görünür. Ana sayfadaki "Topluluğa üye ol" düğmesi `data/site.json` içindeki `memberUrl` adresine gider (boşsa düğme gizlenir). Liste boşsa bölüm ve menü bağlantısı gizli kalır.
 
 ## Yerelde çalıştırma
 
