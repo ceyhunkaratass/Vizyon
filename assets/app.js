@@ -45,16 +45,6 @@ function renderUpcoming(events) {
 const safeSrc = (src) => /^(https:\/\/|assets\/)/.test(src || "");
 let archiveGalleries = [];
 
-function renderGallery(items, eventIndex, title) {
-  const thumbs = items
-    .map(
-      (item, i) =>
-        `<li><button class="gallery-thumb" type="button" data-event="${eventIndex}" data-photo="${i + 1}" aria-label="${esc(item.caption || item.alt)} — büyüt"><img src="${esc(item.src)}" alt="${esc(item.alt)}" loading="lazy"></button></li>`
-    )
-    .join("");
-  return `<div class="gallery"><h4 class="gallery-title">${esc(title || "Etkinlikten kareler")}</h4><ul class="gallery-grid">${thumbs}</ul></div>`;
-}
-
 function renderArchive(events) {
   archiveGalleries = [];
   archiveGrid.innerHTML = events
@@ -65,8 +55,9 @@ function renderArchive(events) {
       archiveGalleries[index] = hasGallery
         ? [{ src: e.image, alt: e.alt || e.title, caption: e.coverCaption || e.title }, ...extra.map((g) => ({ src: g.src, alt: g.alt || g.caption || e.title, caption: g.caption || "" }))]
         : [];
+      const count = archiveGalleries[index].length;
       const cover = hasGallery
-        ? `<button class="archive-photo archive-photo--button" type="button" data-event="${index}" data-photo="0" aria-label="Fotoğrafı büyüt"><img src="${esc(e.image)}" alt="${esc(e.alt || e.title)}" loading="lazy"></button>`
+        ? `<div class="photo-stack"><button class="archive-photo archive-photo--button" type="button" data-event="${index}" data-photo="0" aria-label="Fotoğrafları görüntüle (${count} fotoğraf)"><img src="${esc(e.image)}" alt="${esc(e.alt || e.title)}" loading="lazy"><span class="photo-count" aria-hidden="true">${count} fotoğraf</span></button></div>`
         : photo("archive-photo", e);
       return `
       <article class="archive-card${hasGallery ? " archive-card--feature" : ""}" data-reveal data-search="${esc(searchText)}">
@@ -75,8 +66,8 @@ function renderArchive(events) {
           ${meta([e.date, e.type])}
           <h3>${esc(e.title)}</h3>
           <p class="event-description">${esc(e.description)}</p>
+          ${hasGallery ? `<button class="text-link gallery-open" type="button" data-event="${index}" data-photo="0">${esc(e.galleryTitle || "Etkinlikten kareler")} (${count}) <span class="arrow" aria-hidden="true">→</span></button>` : ""}
         </div>
-        ${hasGallery ? renderGallery(archiveGalleries[index].slice(1), index, e.galleryTitle) : ""}
       </article>`;
     })
     .join("");

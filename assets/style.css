@@ -199,19 +199,20 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .archive-card[hidden] { display: none; }
 .archive-photo { display: block; overflow: hidden; background: var(--surface); aspect-ratio: 1.55 / 1; }
 .archive-photo--button { width: 100%; padding: 0; border: 0; cursor: zoom-in; }
-.archive-photo--button:focus-visible, .gallery-thumb:focus-visible { outline: 3px solid rgb(165 180 252 / 55%); outline-offset: 3px; }
+.archive-photo--button:focus-visible { outline: 3px solid rgb(165 180 252 / 55%); outline-offset: 3px; }
 .archive-card--feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 28px 40px; align-items: center; }
 .archive-card--feature .archive-photo { aspect-ratio: 16 / 9; border: 1px solid var(--line); }
 .archive-card--feature .archive-photo img { object-position: center; }
 .archive-card--feature h3 { font-size: 28px; }
 .archive-card--feature .event-description { font-size: 15px; line-height: 1.75; }
 .archive-card--feature .event-meta { margin-top: 0; }
-.gallery { grid-column: 1 / -1; padding-top: 8px; }
-.gallery-title { margin: 0 0 14px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
-.gallery-thumb { display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--line); background: var(--surface); aspect-ratio: 16 / 10; cursor: zoom-in; }
-.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 380ms ease, opacity 200ms ease; opacity: .92; }
-.gallery-thumb:hover img { transform: scale(1.05); opacity: 1; }
+.photo-stack { margin: 0 18px 18px 0; box-shadow: 9px 9px 0 -1px var(--surface), 9px 9px 0 0 var(--line), 18px 18px 0 -1px var(--surface), 18px 18px 0 0 var(--line); }
+.photo-stack .archive-photo { position: relative; display: block; }
+.photo-count { position: absolute; right: 12px; bottom: 12px; padding: 7px 12px; color: #fff; background: rgb(7 4 15 / 78%); border: 1px solid rgb(255 255 255 / 25%); backdrop-filter: blur(4px); font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+.photo-count::before { content: "▣ "; color: var(--accent); }
+.archive-photo--button:hover .photo-count { background: rgb(139 92 246 / 85%); }
+.gallery-open { margin-top: 16px; padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+.gallery-open:focus-visible { outline: 3px solid rgb(165 180 252 / 55%); outline-offset: 3px; }
 .lightbox { width: min(1100px, 96vw); max-width: none; max-height: 94vh; padding: 0; overflow: visible; border: 0; color: #fff; background: transparent; }
 .lightbox[open] { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; }
 .lightbox::backdrop { background: rgb(4 2 10 / 90%); backdrop-filter: blur(4px); }
@@ -325,7 +326,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   .value-row p { grid-column: 2; }
   .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
   .archive-card--feature { grid-template-columns: 1fr; gap: 20px; }
-  .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .closing-inner { align-items: flex-start; flex-direction: column; }
   .closing--form .closing-inner { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
   .closing--form h2, .closing--form .closing-lead, .closing--form .idea-form, .closing--form .closing-actions { grid-column: 1; grid-row: auto; }
@@ -348,7 +348,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   h2 { font-size: 42px; }
   .upcoming, .archive-grid { grid-template-columns: 1fr; gap: 26px; }
   .archive-card--feature h3 { font-size: 23px; }
-  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .lightbox[open] { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
   .lightbox-figure { grid-column: 1 / -1; grid-row: 1; }
   .lightbox-prev { grid-row: 2; justify-self: end; margin-top: 8px; }
