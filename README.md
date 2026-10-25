@@ -56,10 +56,10 @@ Form anahtarı (`ideaFormKey`) boşken, sayfa sonunda `data/site.json` içindeki
 "İletişim" bölümü `data/site.json` içindeki `contacts` listesinden oluşur. Yeni bağlantı eklemek için listeye bir satır yazın (adres `https://` ile başlamalı, `text` isteğe bağlıdır):
 
 ```json
-{ "label": "Instagram", "url": "https://www.instagram.com/vizyonergenclik/", "text": "@vizyonergenclik" }
+{ "type": "instagram", "label": "Instagram", "url": "https://www.instagram.com/vizyoner.genclik/", "text": "@vizyoner.genclik" }
 ```
 
-Liste boşsa bölüm ve menü bağlantısı gizli kalır.
+Her bağlantı ayrı bir kart olarak alt alta görünür. `type` simgeyi belirler (`instagram`, `whatsapp`, `web`; yazılmazsa web simgesi çıkar). Liste boşsa bölüm ve menü bağlantısı gizli kalır.
 
 ## Yerelde çalıştırma
 

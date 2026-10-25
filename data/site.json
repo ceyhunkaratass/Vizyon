@@ -3,8 +3,22 @@
   "ideaFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfZng4pZ8FdyeDRg8qUO7iur4Qqwd6RuRAfIWvNGw6IGufiMA/viewform",
   "contacts": [
     {
+      "type": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/vizyoner.genclik/",
+      "text": "@vizyoner.genclik"
+    },
+    {
+      "type": "whatsapp",
+      "label": "WhatsApp",
+      "url": "https://chat.whatsapp.com/EsmnvA1HTD40kzYglWcXYx",
+      "text": "Topluluk grubuna katıl"
+    },
+    {
+      "type": "web",
       "label": "Web sitemiz",
-      "url": "https://vizyonergencliksite.vercel.app/"
+      "url": "https://vizyonergencliksite.vercel.app/",
+      "text": "Web sitemizi ziyaret et"
     }
   ]
 }
