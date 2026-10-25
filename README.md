@@ -5,7 +5,7 @@ Malatya Turgut Özal Üniversitesi öğrenci topluluğu Vizyoner Gençlik'in tan
 ## Yapı
 
 ```
-index.html          Sayfa içeriği (amaç, değerler, yaklaşım, akademik yapı)
+index.html          Sayfa içeriği (amaç, değerler, bütüncül yapı)
 assets/style.css    Tüm stiller
 assets/logo.png     Topluluk logosu (üst/alt köşe ve sekme simgesi)
 assets/hero-logo.jpg Ana sayfadaki büyük logo

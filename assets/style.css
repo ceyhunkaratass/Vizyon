@@ -173,10 +173,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
 .value-row p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
 
 
-.approach { display: grid; grid-template-columns: 1fr 1.25fr; align-items: start; gap: 72px; }
-.approach-body { display: grid; }
-.approach-body p { margin: 0; padding: 26px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 16px; line-height: 1.8; }
-.approach-body p:first-child { padding-top: 0; border-top: 0; color: var(--ink); font-family: var(--display); font-size: clamp(22px, 2.6vw, 28px); font-weight: 500; line-height: 1.4; }
 
 .structure { max-width: 920px; margin-inline: auto; }
 .structure-core { display: grid; justify-items: center; gap: 10px; padding: 44px 24px; border: 1px solid rgb(139 92 246 / 40%); color: white; background: linear-gradient(135deg, #2a1670, #16226b); text-align: center; }
@@ -321,7 +317,6 @@ h2 { margin-bottom: 0; font-family: var(--display); font-size: clamp(36px, 5vw, 
   .upcoming--single .event-card { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; }
   .about-inner { grid-template-columns: 1fr; gap: 24px; }
   .contact-inner { grid-template-columns: 1fr; gap: 28px; }
-  .approach { grid-template-columns: 1fr; gap: 28px; }
   .value-row { grid-template-columns: 28px 1fr; gap: 6px 18px; }
   .value-row p { grid-column: 2; }
   .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
