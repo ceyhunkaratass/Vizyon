@@ -42,16 +42,41 @@ function renderUpcoming(events) {
   upcomingEmpty.hidden = events.length > 0;
 }
 
+const safeSrc = (src) => /^(https:\/\/|assets\/)/.test(src || "");
+let archiveGalleries = [];
+
+function renderGallery(items, eventIndex, title) {
+  const thumbs = items
+    .map(
+      (item, i) =>
+        `<li><button class="gallery-thumb" type="button" data-event="${eventIndex}" data-photo="${i + 1}" aria-label="${esc(item.caption || item.alt)} — büyüt"><img src="${esc(item.src)}" alt="${esc(item.alt)}" loading="lazy"></button></li>`
+    )
+    .join("");
+  return `<div class="gallery"><h4 class="gallery-title">${esc(title || "Etkinlikten kareler")}</h4><ul class="gallery-grid">${thumbs}</ul></div>`;
+}
+
 function renderArchive(events) {
+  archiveGalleries = [];
   archiveGrid.innerHTML = events
-    .map((e) => {
+    .map((e, index) => {
       const searchText = [e.title, e.description, e.type, e.date, e.location].join(" ");
+      const extra = (e.gallery || []).filter((g) => g && safeSrc(g.src));
+      const hasGallery = extra.length > 0 && safeSrc(e.image);
+      archiveGalleries[index] = hasGallery
+        ? [{ src: e.image, alt: e.alt || e.title, caption: e.coverCaption || e.title }, ...extra.map((g) => ({ src: g.src, alt: g.alt || g.caption || e.title, caption: g.caption || "" }))]
+        : [];
+      const cover = hasGallery
+        ? `<button class="archive-photo archive-photo--button" type="button" data-event="${index}" data-photo="0" aria-label="Fotoğrafı büyüt"><img src="${esc(e.image)}" alt="${esc(e.alt || e.title)}" loading="lazy"></button>`
+        : photo("archive-photo", e);
       return `
-      <article class="archive-card" data-reveal data-search="${esc(searchText)}">
-        ${photo("archive-photo", e)}
-        ${meta([e.date, e.type])}
-        <h3>${esc(e.title)}</h3>
-        <p class="event-description">${esc(e.description)}</p>
+      <article class="archive-card${hasGallery ? " archive-card--feature" : ""}" data-reveal data-search="${esc(searchText)}">
+        ${cover}
+        <div class="archive-body">
+          ${meta([e.date, e.type])}
+          <h3>${esc(e.title)}</h3>
+          <p class="event-description">${esc(e.description)}</p>
+        </div>
+        ${hasGallery ? renderGallery(archiveGalleries[index].slice(1), index, e.galleryTitle) : ""}
       </article>`;
     })
     .join("");
@@ -59,6 +84,41 @@ function renderArchive(events) {
   archiveGrid.hidden = events.length === 0;
   archiveEmpty.hidden = events.length > 0;
   searchBox.hidden = events.length === 0;
+}
+
+const lightbox = document.querySelector("#lightbox");
+let lbItems = [];
+let lbIndex = 0;
+
+function showLightbox(i) {
+  lbIndex = (i + lbItems.length) % lbItems.length;
+  const item = lbItems[lbIndex];
+  const img = lightbox.querySelector(".lightbox-img");
+  img.src = item.src;
+  img.alt = item.alt;
+  lightbox.querySelector(".lightbox-caption").textContent = item.caption ? `${item.caption} (${lbIndex + 1}/${lbItems.length})` : `${lbIndex + 1}/${lbItems.length}`;
+}
+
+archiveGrid.addEventListener("click", (event) => {
+  const trigger = event.target.closest("[data-photo]");
+  if (!trigger) return;
+  lbItems = archiveGalleries[Number(trigger.dataset.event)] || [];
+  if (lbItems.length === 0) return;
+  showLightbox(Number(trigger.dataset.photo));
+  lightbox.showModal();
+});
+
+if (lightbox) {
+  lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+  lightbox.querySelector(".lightbox-prev").addEventListener("click", () => showLightbox(lbIndex - 1));
+  lightbox.querySelector(".lightbox-next").addEventListener("click", () => showLightbox(lbIndex + 1));
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+  lightbox.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") showLightbox(lbIndex - 1);
+    if (event.key === "ArrowRight") showLightbox(lbIndex + 1);
+  });
 }
 
 function filterArchive() {

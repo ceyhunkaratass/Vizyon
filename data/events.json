@@ -6,9 +6,53 @@
       "date": "24 Ekim 2026",
       "type": "Hibrit · Yüz yüze + çevrimiçi",
       "location": "İnönü Üniversitesi İlahiyat Fakültesi, Malatya",
-      "description": "Kariyere yön veren, sektörel farkındalığı artıran bir buluşmaydı. 6 konuşmacıyla açılış ve vizyon paylaşımı, interaktif sektör oturumları, canlı bağlantılar ve soru-cevap bölümü hem yüz yüze hem çevrimiçi (hibrit) gerçekleşti. Katılan ve izleyen herkese teşekkürler.",
-      "image": "assets/afis-teknoloji-kariyer.jpg",
-      "alt": "Teknoloji ve Kariyer Buluşması etkinlik afişi: 24 Ekim 2026, Cumartesi 10:00, 6 konuşmacı"
+      "description": "Kariyere yön veren, sektörel farkındalığı artıran, vizyon genişleten bir buluşmaydı. 24 Ekim 2026 Cumartesi günü İnönü Üniversitesi İlahiyat Fakültesi'nde hem yüz yüze hem çevrimiçi (hibrit) olarak gerçekleştirdik. 6 konuşmacıyla açılış ve vizyon paylaşımı, interaktif sektör oturumları, canlı bağlantılar ve soru-cevap bölümü yaptık. Konuşmacılar yapay zekâ güvenliğinden yapay zekâ çağında yazılımcılığa, siber güvenlik ve sosyal mühendislikten bulut altyapısına ve güncel IT sektöründeki mesleklere kadar geniş bir yelpazede deneyimlerini ve kariyer yolculuklarını paylaştı. Salonu dolduran öğrencilerimiz soru sordu, canlı bağlantıdaki konuşmacılarla sohbet etti. Katılan ve izleyen herkese, konuşmacılarımıza ve emeği geçen ekibe teşekkürler.",
+      "image": "assets/etkinlik/teknoloji-kariyer-kalabalik.jpg",
+      "alt": "Teknoloji ve Kariyer Buluşması'na katılan öğrencilerin ve organizatörlerin sahnede çekilmiş toplu fotoğrafı",
+      "galleryTitle": "Etkinlikten kareler",
+      "gallery": [
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-sahne.jpg",
+          "alt": "Sahnede yan yana duran dokuz kişilik grup",
+          "caption": "Sahnede toplu fotoğraf"
+        },
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-hakan.jpg",
+          "alt": "Perdeye yansıtılan sunum: Odyoloji mezunu birinin kamu kurumlarında yazılım geliştireceğini tahmin eder miydiniz? Yanda çevrimiçi konuşmacı ve salon görüntüsü",
+          "caption": "Hakan: \"Peki, buraya nasıl geldim?\""
+        },
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-cihan-ozhan.jpg",
+          "alt": "Perdeye yansıtılan Cihan Özhan tanıtım slaytı: Offensive AI Security, araştırmacı ve geliştirici",
+          "caption": "Cihan Özhan: yapay zekâ güvenliği"
+        },
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-emrullah-keser.jpg",
+          "alt": "Perdede \"Kod değil, ikna.\" başlıklı siber söyleşi slaytı; sahnede mikrofonla konuşan Emrullah Keser",
+          "caption": "Emrullah Keser: \"Kod değil, ikna.\""
+        },
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-yunus-emre-alpu.jpg",
+          "alt": "Perdeye yansıtılan \"Peki hâlâ kod yazıyor muyum?\" slaytı; yanda çevrimiçi konuşmacı Yunus Emre Alpu",
+          "caption": "Yunus Emre Alpu: yapay zekâ çağında kod yazmak"
+        },
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-guncel-it.jpg",
+          "alt": "Sahnede konuşmacı ve perdede Güncel IT Sektörü başlıklı meslek listesi",
+          "caption": "Güncel IT sektöründeki meslek dalları"
+        },
+        {
+          "src": "assets/etkinlik/teknoloji-kariyer-yasin-ozmen.jpg",
+          "alt": "Perdeye yansıtılan Yasin Özmen tanıtım slaytı: OpenStack Engineer, Trendyol; yanda çevrimiçi konuşmacı ve salon",
+          "caption": "Yasin Özmen: kariyer yolculuğu"
+        },
+        {
+          "src": "assets/afis-teknoloji-kariyer.jpg",
+          "alt": "Teknoloji ve Kariyer Buluşması etkinlik afişi: 24 Ekim 2026, Cumartesi 10:00, 6 konuşmacı",
+          "caption": "Etkinlik afişi"
+        }
+      ],
+      "coverCaption": "Katılımcılarla toplu fotoğraf"
     }
   ]
 }

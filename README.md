@@ -34,7 +34,7 @@ data/events.json    Yaklaşan etkinlikler ve arşiv
 }
 ```
 
-`archive` (geçmiş) kaydında `day` ve `month` yerine `"date": "Mayıs 2026"` yazılır. `type`, `time`, `location`, `image`, `alt`, `link` ve `linkLabel` isteğe bağlıdır; fotoğraf yoksa kart yazıyla görünür. Arşivdeki arama kutusu etkinlik eklenince kendiliğinden belirir.
+`archive` (geçmiş) kaydında `day` ve `month` yerine `"date": "Mayıs 2026"` yazılır. `type`, `time`, `location`, `image`, `alt`, `link` ve `linkLabel` isteğe bağlıdır; fotoğraf yoksa kart yazıyla görünür. Arşiv kaydına `"gallery": [{"src": "assets/etkinlik/foto.jpg", "alt": "...", "caption": "..."}]` eklenirse kart büyük görünür, altında "Etkinlikten kareler" galerisi çıkar (isteğe bağlı `galleryTitle`, `coverCaption`); fotoğraflara tıklayınca büyür. Fotoğrafları `assets/etkinlik/` klasörüne koyun. Arşivdeki arama kutusu etkinlik eklenince kendiliğinden belirir.
 
 ## Fikir formu (sitenin içinde)
 
