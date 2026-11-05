@@ -208,25 +208,25 @@ fetch("data/site.json")
 
 const emailVerdicts = new Map();
 
-// Abstract API ile adresin gerçekten var olup olmadığına bakar.
+// ZeroBounce ile adresin gerçekten var olup olmadığına bakar.
 // Servis hata verir, kota biterse ya da geç yanıtlarsa gönderimi ENGELLEMEZ (ok: true).
 async function checkEmail(email, apiKey, strict) {
   if (emailVerdicts.has(email)) return emailVerdicts.get(email);
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 5000);
+  const timer = setTimeout(() => controller.abort(), 6000);
   try {
-    const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${encodeURIComponent(apiKey)}&email=${encodeURIComponent(email)}`;
+    const url = `https://api.zerobounce.net/v2/validate?api_key=${encodeURIComponent(apiKey)}&email=${encodeURIComponent(email)}&ip_address=`;
     const response = await fetch(url, { signal: controller.signal });
     if (!response.ok) return { ok: true, skipped: true };
     const data = await response.json();
-    if (!data || data.error || typeof data.deliverability !== "string") return { ok: true, skipped: true };
-    const hint = typeof data.autocorrect === "string" ? data.autocorrect.trim() : "";
+    if (!data || data.error || typeof data.status !== "string") return { ok: true, skipped: true };
+    const hint = typeof data.did_you_mean === "string" ? data.did_you_mean.trim() : "";
     let verdict = { ok: true };
-    if (hint) verdict = { ok: false, hint };
-    else if (data.is_valid_format && data.is_valid_format.value === false) verdict = { ok: false };
-    else if (data.is_disposable_email && data.is_disposable_email.value === true) verdict = { ok: false, disposable: true };
-    else if (data.deliverability === "UNDELIVERABLE") verdict = { ok: false };
-    else if (strict && data.deliverability !== "DELIVERABLE") verdict = { ok: false };
+    if (hint && data.status !== "valid") verdict = { ok: false, hint };
+    else if (data.sub_status === "disposable") verdict = { ok: false, disposable: true };
+    else if (["invalid", "spamtrap", "abuse"].includes(data.status)) verdict = { ok: false };
+    else if (data.status === "do_not_mail" && data.sub_status !== "role_based") verdict = { ok: false };
+    else if (strict && data.status !== "valid") verdict = { ok: false };
     emailVerdicts.set(email, verdict);
     return verdict;
   } catch (error) {

@@ -49,12 +49,12 @@ Anahtar boşken form gizli kalır. Bu anahtar sitede herkese açık durmak üzer
 
 ## E-posta adresi kontrolü (isteğe bağlı)
 
-Formda yazılan e-posta adresinin gerçekten var olup olmadığını [Abstract API](https://www.abstractapi.com/api/email-validation-api) (Email Validation) ile kontrol edebilirsiniz. Açmak için:
+Formda yazılan e-posta adresinin gerçekten var olup olmadığını [ZeroBounce](https://www.zerobounce.net) e-posta doğrulama API'si ile kontrol edebilirsiniz. Açmak için:
 
-1. Abstract API'de ücretsiz hesap açıp Email Validation API anahtarını alın.
+1. ZeroBounce'ta ücretsiz hesap açıp API anahtarını alın.
 2. Anahtarı `data/site.json` içindeki `emailCheckKey` alanına yazın.
 
-Anahtar boşken kontrol kapalıdır. Açıkken: var olmayan, hatalı yazılmış (`gmial.com` gibi) ve tek kullanımlık adresler reddedilir. Servis cevap vermez, hata verir ya da ücretsiz kota biterse gönderim engellenmez, form normal çalışır. `emailCheckStrict` alanını `true` yaparsanız servisin "belirsiz" dediği adresler de reddedilir; ama gerçek kullanıcılar da yanlışlıkla reddedilebilir. Kontrol tarayıcıda çalıştığı için doğrudan Web3Forms'a istek atanı durdurmaz, dürüst kullanıcıların yanlış adres yazmasını engeller. Açıldığında aydınlatma metnine adresin Abstract API'ye iletildiği bilgisi de otomatik eklenir.
+Anahtar boşken kontrol kapalıdır. Açıkken: var olmayan, hatalı yazılmış (`gmial.com` gibi) ve tek kullanımlık adresler reddedilir (`info@` gibi rol adresleri geçer). Servis cevap vermez, hata verir ya da ücretsiz kota biterse gönderim engellenmez, form normal çalışır. `emailCheckStrict` alanını `true` yaparsanız servisin "belirsiz" dediği adresler de reddedilir; ama gerçek kullanıcılar da yanlışlıkla reddedilebilir. Kontrol tarayıcıda çalıştığı için doğrudan Web3Forms'a istek atanı durdurmaz, dürüst kullanıcıların yanlış adres yazmasını engeller. Açıldığında aydınlatma metnine adresin ZeroBounce'a iletildiği bilgisi de otomatik eklenir.
 
 ## Eski fikir formu bağlantısı
 
