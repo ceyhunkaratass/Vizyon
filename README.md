@@ -47,6 +47,15 @@ Formda KVKK onay kutusu ve "Aydınlatma metni" bağlantısıyla açılan bir pen
 
 Anahtar boşken form gizli kalır. Bu anahtar sitede herkese açık durmak üzere tasarlanmıştır, gizli bir şifre değildir.
 
+## E-posta adresi kontrolü (isteğe bağlı)
+
+Formda yazılan e-posta adresinin gerçekten var olup olmadığını [Abstract API](https://www.abstractapi.com/api/email-validation-api) (Email Validation) ile kontrol edebilirsiniz. Açmak için:
+
+1. Abstract API'de ücretsiz hesap açıp Email Validation API anahtarını alın.
+2. Anahtarı `data/site.json` içindeki `emailCheckKey` alanına yazın.
+
+Anahtar boşken kontrol kapalıdır. Açıkken: var olmayan, hatalı yazılmış (`gmial.com` gibi) ve tek kullanımlık adresler reddedilir. Servis cevap vermez, hata verir ya da ücretsiz kota biterse gönderim engellenmez, form normal çalışır. `emailCheckStrict` alanını `true` yaparsanız servisin "belirsiz" dediği adresler de reddedilir; ama gerçek kullanıcılar da yanlışlıkla reddedilebilir. Kontrol tarayıcıda çalıştığı için doğrudan Web3Forms'a istek atanı durdurmaz, dürüst kullanıcıların yanlış adres yazmasını engeller. Açıldığında aydınlatma metnine adresin Abstract API'ye iletildiği bilgisi de otomatik eklenir.
+
 ## Eski fikir formu bağlantısı
 
 Form anahtarı (`ideaFormKey`) boşken, sayfa sonunda `data/site.json` içindeki `ideaFormUrl` adresine giden "Fikrini bize yaz" bağlantısı görünür (örneğin bir Google Formlar adresi, `https://` ile başlamalı). Anahtar girilince form açılır ve bu bağlantı gizlenir. İkisi de boşsa fikir bölümünde yalnızca etkinlik butonu kalır.

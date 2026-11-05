@@ -202,11 +202,42 @@ fetch("data/site.json")
       cta.hidden = false;
     }
     renderContacts(site.contacts || []);
-    setupIdeaForm(site.ideaFormKey);
+    setupIdeaForm(site.ideaFormKey, { emailKey: (site.emailCheckKey || "").trim(), strict: site.emailCheckStrict === true });
   })
   .catch(() => {});
 
-function setupIdeaForm(key) {
+const emailVerdicts = new Map();
+
+// Abstract API ile adresin gerçekten var olup olmadığına bakar.
+// Servis hata verir, kota biterse ya da geç yanıtlarsa gönderimi ENGELLEMEZ (ok: true).
+async function checkEmail(email, apiKey, strict) {
+  if (emailVerdicts.has(email)) return emailVerdicts.get(email);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 5000);
+  try {
+    const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${encodeURIComponent(apiKey)}&email=${encodeURIComponent(email)}`;
+    const response = await fetch(url, { signal: controller.signal });
+    if (!response.ok) return { ok: true, skipped: true };
+    const data = await response.json();
+    if (!data || data.error || typeof data.deliverability !== "string") return { ok: true, skipped: true };
+    const hint = typeof data.autocorrect === "string" ? data.autocorrect.trim() : "";
+    let verdict = { ok: true };
+    if (hint) verdict = { ok: false, hint };
+    else if (data.is_valid_format && data.is_valid_format.value === false) verdict = { ok: false };
+    else if (data.is_disposable_email && data.is_disposable_email.value === true) verdict = { ok: false, disposable: true };
+    else if (data.deliverability === "UNDELIVERABLE") verdict = { ok: false };
+    else if (strict && data.deliverability !== "DELIVERABLE") verdict = { ok: false };
+    emailVerdicts.set(email, verdict);
+    return verdict;
+  } catch (error) {
+    console.warn("E-posta kontrolü atlandı:", error);
+    return { ok: true, skipped: true };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function setupIdeaForm(key, options = {}) {
   key = (key || "").trim();
   if (!/^[0-9a-f-]{20,}$/i.test(key)) return;
 
@@ -217,6 +248,9 @@ function setupIdeaForm(key) {
   document.querySelector(".closing-lead").hidden = false;
   document.querySelector("#idea-link").hidden = true;
   form.hidden = false;
+
+  const emailKey = options.emailKey || "";
+  if (emailKey) document.querySelector("#kvkk-emailcheck").hidden = false;
 
   const say = (text, kind) => {
     status.textContent = text;
@@ -251,6 +285,18 @@ function setupIdeaForm(key) {
     if (form.botcheck.checked) {
       say("Teşekkürler!", "ok");
       return;
+    }
+
+    if (emailKey) {
+      submit.disabled = true;
+      say("E-posta adresi kontrol ediliyor…");
+      const verdict = await checkEmail(email, emailKey, options.strict);
+      submit.disabled = false;
+      if (!verdict.ok) {
+        if (verdict.hint) return fail(form.email, `Şunu mu demek istedin: ${verdict.hint}? Adresi kontrol edip tekrar dener misin?`);
+        if (verdict.disposable) return fail(form.email, "Geçici (tek kullanımlık) e-posta adresleri kabul edilmiyor. Kalıcı bir adres yazar mısın?");
+        return fail(form.email, "Bu e-posta adresi geçerli görünmüyor. Gerçek ve aktif bir adres yazar mısın?");
+      }
     }
 
     const payload = {
