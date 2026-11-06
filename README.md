@@ -10,8 +10,9 @@ assets/style.css    Tüm stiller
 assets/logo.png     Topluluk logosu (üst/alt köşe ve sekme simgesi)
 assets/hero-logo.jpg Ana sayfadaki büyük logo
 assets/fonts/       Sitenin kendi yazı tipleri (DM Sans, Space Grotesk, Dancing Script; SIL OFL 1.1)
-assets/app.js       Etkinlik kartlarını ve arşiv aramasını üretir
+assets/app.js       Etkinlik kartlarını, arşiv aramasını ve fikir formunu üretir
 data/events.json    Yaklaşan etkinlikler ve arşiv
+data/site.json      Form anahtarı, iletişim bağlantıları, üyelik adresi
 ```
 
 ## Etkinlik eklemek
@@ -47,14 +48,20 @@ Formda KVKK onay kutusu ve "Aydınlatma metni" bağlantısıyla açılan bir pen
 
 Anahtar boşken form gizli kalır. Bu anahtar sitede herkese açık durmak üzere tasarlanmıştır, gizli bir şifre değildir.
 
-## E-posta adresi kontrolü (isteğe bağlı)
+## E-posta adresi kontrolü
 
-Formda yazılan e-posta adresinin gerçekten var olup olmadığını [ZeroBounce](https://www.zerobounce.net) e-posta doğrulama API'si ile kontrol edebilirsiniz. Açmak için:
+Formda yazılan e-posta adresi, gönderimden önce tarayıcıda kontrol edilir. Ek bir servis, API anahtarı ya da ücret gerekmez; adres hiçbir yere gönderilmez.
 
-1. ZeroBounce'ta ücretsiz hesap açıp API anahtarını alın.
-2. Anahtarı `data/site.json` içindeki `emailCheckKey` alanına yazın.
+Kurallar:
 
-Anahtar boşken kontrol kapalıdır. Açıkken: var olmayan, hatalı yazılmış (`gmial.com` gibi) ve tek kullanımlık adresler reddedilir (`info@` gibi rol adresleri geçer). Servis cevap vermez, hata verir ya da ücretsiz kota biterse gönderim engellenmez, form normal çalışır. `emailCheckStrict` alanını `true` yaparsanız servisin "belirsiz" dediği adresler de reddedilir; ama gerçek kullanıcılar da yanlışlıkla reddedilebilir. Kontrol tarayıcıda çalıştığı için doğrudan Web3Forms'a istek atanı durdurmaz, dürüst kullanıcıların yanlış adres yazmasını engeller. Açıldığında aydınlatma metnine adresin ZeroBounce'a iletildiği bilgisi de otomatik eklenir.
+- Adres `kullanici@alanadi.uzanti` biçiminde olmalıdır.
+- Alan adı bilinen bir sağlayıcı olmalıdır: `gmail.com`, `outlook.com`, `hotmail.com`, `yahoo.com`, `icloud.com`, `yandex.com`, `proton.me` ve benzerleri. Üniversite adresleri (`.edu`, `.edu.tr`) de kabul edilir.
+- Yazım hataları yakalanır ve doğrusu önerilir: `ali@gmial.com` yazan kullanıcıya "Bunu mu demek istedin: ali@gmail.com?" mesajı gösterilir.
+- Adres hatalıysa form gönderilmez, alan kırmızı çerçeveyle işaretlenir ve imleç e-posta alanına döner.
+
+Kabul edilen sağlayıcı listesi `assets/app.js` içindeki `KNOWN_DOMAINS` dizisindedir; yeni bir sağlayıcı eklemek için listeye bir satır yazmanız yeterlidir.
+
+Bu kontrol adresin gerçekten var olup olmadığını bilemez (ör. `hataliadres123@gmail.com` geçer). Amacı, dürüst kullanıcıların yanlış adres yazmasını engellemektir.
 
 ## Eski fikir formu bağlantısı
 

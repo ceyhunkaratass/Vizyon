@@ -202,42 +202,86 @@ fetch("data/site.json")
       cta.hidden = false;
     }
     renderContacts(site.contacts || []);
-    setupIdeaForm(site.ideaFormKey, { emailKey: (site.emailCheckKey || "").trim(), strict: site.emailCheckStrict === true });
+    setupIdeaForm(site.ideaFormKey);
   })
   .catch(() => {});
 
-const emailVerdicts = new Map();
+// Bilinen e-posta sağlayıcıları ve yaygın yazım hataları
+const KNOWN_DOMAINS = [
+  "gmail.com", "googlemail.com",
+  "outlook.com", "outlook.com.tr", "hotmail.com", "hotmail.com.tr", "live.com", "msn.com",
+  "yahoo.com", "yahoo.com.tr", "ymail.com",
+  "icloud.com", "me.com", "mac.com",
+  "yandex.com", "yandex.com.tr", "yandex.ru",
+  "proton.me", "protonmail.com",
+  "aol.com", "gmx.com", "mail.com", "zoho.com"
+];
 
-// ZeroBounce ile adresin gerçekten var olup olmadığına bakar.
-// Servis hata verir, kota biterse ya da geç yanıtlarsa gönderimi ENGELLEMEZ (ok: true).
-async function checkEmail(email, apiKey, strict) {
-  if (emailVerdicts.has(email)) return emailVerdicts.get(email);
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 6000);
-  try {
-    const url = `https://api.zerobounce.net/v2/validate?api_key=${encodeURIComponent(apiKey)}&email=${encodeURIComponent(email)}&ip_address=`;
-    const response = await fetch(url, { signal: controller.signal });
-    if (!response.ok) return { ok: true, skipped: true };
-    const data = await response.json();
-    if (!data || data.error || typeof data.status !== "string") return { ok: true, skipped: true };
-    const hint = typeof data.did_you_mean === "string" ? data.did_you_mean.trim() : "";
-    let verdict = { ok: true };
-    if (hint && data.status !== "valid") verdict = { ok: false, hint };
-    else if (data.sub_status === "disposable") verdict = { ok: false, disposable: true };
-    else if (["invalid", "spamtrap", "abuse"].includes(data.status)) verdict = { ok: false };
-    else if (data.status === "do_not_mail" && data.sub_status !== "role_based") verdict = { ok: false };
-    else if (strict && data.status !== "valid") verdict = { ok: false };
-    emailVerdicts.set(email, verdict);
-    return verdict;
-  } catch (error) {
-    console.warn("E-posta kontrolü atlandı:", error);
-    return { ok: true, skipped: true };
-  } finally {
-    clearTimeout(timer);
+function levenshtein(a, b) {
+  const matrix = [];
+  for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      matrix[i][j] = b.charAt(i - 1) === a.charAt(j - 1)
+        ? matrix[i - 1][j - 1]
+        : Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+    }
   }
+  return matrix[b.length][a.length];
 }
 
-function setupIdeaForm(key, options = {}) {
+function suggestDomain(domain) {
+  let best = null;
+  let bestDist = Infinity;
+  KNOWN_DOMAINS.forEach((known) => {
+    const d = levenshtein(domain, known);
+    if (d < bestDist) {
+      bestDist = d;
+      best = known;
+    }
+  });
+  // Uzantısı eksik yazımları yakala ("gmail" -> "gmail.com")
+  if (bestDist > 2) {
+    const name = domain.split(".")[0];
+    KNOWN_DOMAINS.forEach((known) => {
+      if (bestDist > 2 && known.split(".")[0] === name) {
+        best = known;
+        bestDist = 1;
+      }
+    });
+  }
+  return bestDist <= 2 ? best : null;
+}
+
+function validateEmailDomain(email) {
+  const at = email.lastIndexOf("@");
+  if (at < 1) return { ok: false, message: "E-posta adresinde \"@\" işareti ve kullanıcı adı olmalı (ör. ornek@gmail.com)." };
+
+  const local = email.slice(0, at);
+  const domain = email.slice(at + 1).toLowerCase();
+  if (!domain) return { ok: false, message: "\"@\" işaretinden sonra sağlayıcıyı yaz (ör. @gmail.com, @outlook.com)." };
+
+  // Geçerli biçim kontrolü
+  if (!/^[A-Za-z0-9._%+-]+$/.test(local)) return { ok: false, message: "E-posta adresinin kullanıcı adı kısmında geçersiz karakter var." };
+  if (!/^[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(domain)) return { ok: false, message: "Geçerli bir e-posta adresi yazar mısın? Sana bu adresten dönebiliriz." };
+
+  // Üniversite adresleri (.edu, .edu.tr) geçerli
+  if (/\.edu(\.[a-z]{2})?$/.test(domain)) return { ok: true };
+
+  // Bilinen sağlayıcılar listesinde mi?
+  if (KNOWN_DOMAINS.indexOf(domain) !== -1) return { ok: true };
+
+  // Yazım hatası var mı kontrol et
+  const suggestion = suggestDomain(domain);
+  if (suggestion) {
+    return { ok: false, message: `\"@${domain}\" hatalı görünüyor. Şunu mu demek istedin: ${local}@${suggestion}?` };
+  }
+
+  return { ok: false, message: "Lütfen geçerli bir e-posta sağlayıcısı kullan (ör. @gmail.com, @outlook.com, @hotmail.com) ya da üniversite adresini yaz." };
+}
+
+function setupIdeaForm(key) {
   key = (key || "").trim();
   if (!/^[0-9a-f-]{20,}$/i.test(key)) return;
 
@@ -248,9 +292,6 @@ function setupIdeaForm(key, options = {}) {
   document.querySelector(".closing-lead").hidden = false;
   document.querySelector("#idea-link").hidden = true;
   form.hidden = false;
-
-  const emailKey = options.emailKey || "";
-  if (emailKey) document.querySelector("#kvkk-emailcheck").hidden = false;
 
   const say = (text, kind) => {
     status.textContent = text;
@@ -277,26 +318,18 @@ function setupIdeaForm(key, options = {}) {
       field.focus();
     };
     if (name.split(" ").filter((part) => part.length > 1).length < 2) return fail(form.name, "Adını ve soyadını birlikte yazar mısın?");
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return fail(form.email, "Geçerli bir e-posta adresi yazar mısın? Sana bu adresten dönebiliriz.");
+
+    // E-posta doğrulaması: biçim + sağlayıcı kontrolü
+    const emailCheck = validateEmailDomain(email);
+    if (!emailCheck.ok) return fail(form.email, emailCheck.message);
+
     if (message.length < 10) return fail(form.message, "Fikrini biraz daha ayrıntılı yazar mısın? En az 10 karakter gerekli.");
-    if (!form.consent.checked) return fail(form.consent, "Göndermek için aydınlatma metnini okuyup onay kutusunu işaretlemen gerekiyor.");
+    if (!form.consent.checked) return fail(form.consent, "Göndermek için aydınlatma metnini okuyup onay kutusunu işaretlemen gerekiyo.");
     form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
 
     if (form.botcheck.checked) {
       say("Teşekkürler!", "ok");
       return;
-    }
-
-    if (emailKey) {
-      submit.disabled = true;
-      say("E-posta adresi kontrol ediliyor…");
-      const verdict = await checkEmail(email, emailKey, options.strict);
-      submit.disabled = false;
-      if (!verdict.ok) {
-        if (verdict.hint) return fail(form.email, `Şunu mu demek istedin: ${verdict.hint}? Adresi kontrol edip tekrar dener misin?`);
-        if (verdict.disposable) return fail(form.email, "Geçici (tek kullanımlık) e-posta adresleri kabul edilmiyor. Kalıcı bir adres yazar mısın?");
-        return fail(form.email, "Bu e-posta adresi geçerli görünmüyor. Gerçek ve aktif bir adres yazar mısın?");
-      }
     }
 
     const payload = {
