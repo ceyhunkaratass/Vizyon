@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://script.google.com https://script.googleusercontent.com; form-action 'none'; base-uri 'none'; object-src 'none'">
   <meta name="theme-color" content="#07040f">
   <meta name="description" content="Vizyoner Gençlik; Malatya Turgut Özal Üniversitesi öğrencilerinin akademik, profesyonel ve sosyal gelişimini bütüncül bir yaklaşımla destekleyen öğrenci topluluğu.">
   <title>Vizyoner Gençlik — Birlikte ileriye</title>
@@ -215,12 +215,17 @@
             <label for="idea-message">Fikrin</label>
             <textarea id="idea-message" name="message" rows="5" maxlength="1500" required placeholder="Nasıl bir etkinlik, proje ya da konu görmek istersin?"></textarea>
           </div>
+          <div class="field" id="idea-code-field" hidden>
+            <label for="idea-code">Doğrulama kodu</label>
+            <input id="idea-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6 haneli kod">
+            <p class="field-hint">E-postana 6 haneli bir kod gönderdik (spam klasörüne de bak). Kod 10 dakika geçerli. <button class="kvkk-open" id="idea-resend" type="button" disabled>Kodu yeniden gönder</button></p>
+          </div>
           <div class="consent-check">
             <input id="idea-consent" name="consent" type="checkbox" required>
             <p><label for="idea-consent">Bilgilerimin fikrimi değerlendirmek için işlenmesine onay veriyorum.</label> <button class="kvkk-open" id="kvkk-open" type="button">Aydınlatma metni</button></p>
           </div>
           <input class="trap" type="checkbox" name="botcheck" id="idea-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button class="button button-light" id="idea-submit" type="submit">Fikrimi gönder <span class="arrow" aria-hidden="true">↗</span></button>
+          <button class="button button-light" id="idea-submit" type="submit"><span id="idea-submit-label">Fikrimi gönder</span> <span class="arrow" aria-hidden="true">↗</span></button>
           <p class="form-status" id="idea-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -245,7 +250,8 @@
           <p><strong>İşlenen veriler:</strong> Formda yazdığın ad soyad, e-posta adresi ve fikir metni.</p>
           <p><strong>Amaç:</strong> Fikrini değerlendirmek, etkinlik ve proje planlamasında kullanmak ve gerekirse sana e-posta ile dönmek. Verilerin bunun dışında kullanılmaz, satılmaz ve reklam için paylaşılmaz.</p>
           <p><strong>Hukuki sebep:</strong> Açık rızan (6698 sayılı KVKK m. 5/1). Rızanı istediğin zaman geri alabilirsin.</p>
-          <p><strong>Aktarım:</strong> Form, mesajları e-postayla iletmek için yurt dışında bulunan Web3Forms hizmeti üzerinden gönderilir. Formu göndererek bu aktarıma da açık rıza vermiş olursun.</p>
+          <p id="kvkk-w3f"><strong>Aktarım:</strong> Form, mesajları e-postayla iletmek için yurt dışında bulunan Web3Forms hizmeti üzerinden gönderilir. Formu göndererek bu aktarıma da açık rıza vermiş olursun.</p>
+          <p id="kvkk-otp" hidden><strong>Aktarım ve doğrulama:</strong> E-posta adresini doğrulamak için adresine bir kod gönderilir. Kod e-postası ve fikrin, Google (Gmail ve Apps Script) hizmetleri üzerinden iletilir; bu nedenle verilerin yurt dışında bulunan sunucularda işlenmesi söz konusudur. Formu göndererek bu aktarıma da açık rıza vermiş olursun. Doğrulama kodu ve adresin, kodun geçerlilik süresi (10 dakika) boyunca geçici olarak saklanır.</p>
 
           <p><strong>Saklama:</strong> Veriler, fikrin değerlendirilip sana dönüş yapılması için gereken süre boyunca saklanır, ardından silinir.</p>
           <p><strong>Hakların:</strong> KVKK m. 11 uyarınca verilerinin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme gibi haklara sahipsin. Başvuru için "İletişim" bölümündeki bağlantılardan bize ulaşabilirsin.</p>

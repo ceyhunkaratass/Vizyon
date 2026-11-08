@@ -63,6 +63,19 @@ Kabul edilen sağlayıcı listesi `assets/app.js` içindeki `KNOWN_DOMAINS` dizi
 
 Bu kontrol adresin gerçekten var olup olmadığını bilemez (ör. `hataliadres123@gmail.com` geçer). Amacı, dürüst kullanıcıların yanlış adres yazmasını engellemektir.
 
+## E-posta doğrulamalı fikir formu (Google Apps Script)
+
+Fikir formu, fikri göndermeden önce yazılan e-posta adresine 6 haneli bir kod yollar; kod doğrulanınca fikir topluluk adresine iletilir. Arka uç `apps-script/Code.gs` dosyasıdır ve ücretsizdir. Kurulum (yaklaşık 15 dakika):
+
+1. E-postaları gönderecek Google hesabıyla (topluluk Gmail'i ya da Google Workspace adresi) [script.google.com](https://script.google.com)'a girip **Yeni proje** açın.
+2. Editördeki her şeyi silip `apps-script/Code.gs` içeriğini yapıştırın.
+3. Dosyanın başındaki `RECIPIENT` satırına fikirlerin geleceği e-posta adresini yazın. **Bu değişikliği GitHub'a göndermeyin**, yalnızca Apps Script editöründe kalsın.
+4. Sağ üstten **Dağıt → Yeni dağıtım → Tür: Web uygulaması**, **Çalıştıran: Ben**, **Erişimi olan: Herkes** seçip dağıtın; istenen izinleri verin (Gmail'den e-posta gönderme izni).
+5. Çıkan, `https://script.google.com/macros/s/.../exec` ile biten adresi `data/site.json` içindeki `ideaEndpoint` alanına yazın.
+6. Kodu sonradan değiştirirseniz **Dağıt → Dağıtımları yönet → düzenle → Yeni sürüm** demeniz gerekir; adres aynı kalır.
+
+`ideaEndpoint` doluyken form bu akışı kullanır, Web3Forms kullanılmaz. Boşken eski Web3Forms akışı (doğrulamasız) çalışır. Sınırlar: Gmail'in günlük gönderim kotası (kişisel hesapta yaklaşık 100 e-posta; bir fikir 2 e-posta harcar), aynı adrese 60 saniyede bir ve saatte en fazla 5 kod, günlük toplam 60 kod; hepsi `Code.gs` başındaki `CONFIG` bölümünden değiştirilebilir.
+
 ## Eski fikir formu bağlantısı
 
 Form anahtarı (`ideaFormKey`) boşken, sayfa sonunda `data/site.json` içindeki `ideaFormUrl` adresine giden "Fikrini bize yaz" bağlantısı görünür (örneğin bir Google Formlar adresi, `https://` ile başlamalı). Anahtar girilince form açılır ve bu bağlantı gizlenir. İkisi de boşsa fikir bölümünde yalnızca etkinlik butonu kalır.

@@ -202,7 +202,7 @@ fetch("data/site.json")
       cta.hidden = false;
     }
     renderContacts(site.contacts || []);
-    setupIdeaForm(site.ideaFormKey);
+    setupIdeaForm(site.ideaFormKey, (site.ideaEndpoint || "").trim());
   })
   .catch(() => {});
 
@@ -281,9 +281,21 @@ function validateEmailDomain(email) {
   return { ok: false, message: "Lütfen geçerli bir e-posta sağlayıcısı kullan (ör. @gmail.com, @outlook.com, @hotmail.com) ya da üniversite adresini yaz." };
 }
 
-function setupIdeaForm(key) {
+const OTP_ERRORS = {
+  bad_email: "Bu e-posta adresi kabul edilmedi. Adresi kontrol eder misin?",
+  invalid_input: "Bilgilerin eksik ya da çok uzun görünüyor. Kontrol edip tekrar dener misin?",
+  hour_limit: "Bu adres için saatlik kod sınırına ulaşıldı. Bir saat sonra tekrar dene.",
+  daily_limit: "Bugün doğrulama kodu gönderme sınırına ulaştık. Yarın tekrar dener misin?",
+  bad_code: "Kod yanlış. Kontrol edip tekrar dene.",
+  expired: "Kodun süresi dolmuş. \"Kodu yeniden gönder\"e basıp yeni kod iste.",
+  too_many_attempts: "Çok fazla yanlış deneme yaptın. \"Kodu yeniden gönder\"e basıp yeni kod iste.",
+  server: "Şu an bir sorun oluştu. Biraz sonra tekrar dener misin?",
+};
+
+function setupIdeaForm(key, endpoint) {
   key = (key || "").trim();
-  if (!/^[0-9a-f-]{20,}$/i.test(key)) return;
+  const otp = /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(endpoint || "");
+  if (!otp && !/^[0-9a-f-]{20,}$/i.test(key)) return;
 
   const form = document.querySelector("#idea-form");
   const status = document.querySelector("#idea-status");
@@ -298,11 +310,82 @@ function setupIdeaForm(key) {
     status.dataset.kind = kind || "";
   };
 
+  // E-posta doğrulama kodu (Apps Script) akışı
+  const codeField = document.querySelector("#idea-code-field");
+  const codeInput = document.querySelector("#idea-code");
+  const resendBtn = document.querySelector("#idea-resend");
+  const submitLabel = document.querySelector("#idea-submit-label");
+  let codeSentTo = "";
+  let resendTimer = null;
+
+  const startResendCountdown = (seconds) => {
+    clearInterval(resendTimer);
+    let left = seconds;
+    const tick = () => {
+      resendBtn.disabled = left > 0;
+      resendBtn.textContent = left > 0 ? `Kodu yeniden gönder (${left})` : "Kodu yeniden gönder";
+      if (left <= 0) clearInterval(resendTimer);
+      left -= 1;
+    };
+    tick();
+    resendTimer = setInterval(tick, 1000);
+  };
+
+  const resetOtp = () => {
+    codeSentTo = "";
+    clearInterval(resendTimer);
+    codeInput.value = "";
+    codeField.hidden = true;
+    resendBtn.disabled = true;
+    submitLabel.textContent = "Doğrulama kodu gönder";
+  };
+
+  const callApi = async (payload) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 25000);
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+      return await response.json();
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+
+  const apiMessage = (result) => {
+    if (result && result.error === "wait") return `Yeni kod için ${Number(result.wait) || 60} saniye beklemen gerekiyor.`;
+    return OTP_ERRORS[result && result.error] || OTP_ERRORS.server;
+  };
+
+  if (otp) {
+    document.querySelector("#kvkk-otp").hidden = false;
+    document.querySelector("#kvkk-w3f").hidden = true;
+    submitLabel.textContent = "Doğrulama kodu gönder";
+    form.email.addEventListener("input", () => {
+      if (codeSentTo && form.email.value.trim().toLowerCase() !== codeSentTo) {
+        resetOtp();
+        say("");
+      }
+    });
+  }
+
   const dialog = document.querySelector("#kvkk-dialog");
   document.querySelector("#kvkk-open").addEventListener("click", () => dialog.showModal());
   document.querySelector("#kvkk-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) dialog.close();
+  });
+
+  resendBtn.addEventListener("click", () => {
+    const name = form.name.value.trim().replace(/\s+/g, " ");
+    const email = form.email.value.trim();
+    if (!email || name.split(" ").filter((part) => part.length > 1).length < 2) return say("Önce adını, soyadını ve e-postanı yaz.", "error");
+    codeSentTo = "";
+    form.requestSubmit();
   });
 
   form.addEventListener("submit", async (event) => {
@@ -324,11 +407,54 @@ function setupIdeaForm(key) {
     if (!emailCheck.ok) return fail(form.email, emailCheck.message);
 
     if (message.length < 10) return fail(form.message, "Fikrini biraz daha ayrıntılı yazar mısın? En az 10 karakter gerekli.");
-    if (!form.consent.checked) return fail(form.consent, "Göndermek için aydınlatma metnini okuyup onay kutusunu işaretlemen gerekiyo.");
+    if (!form.consent.checked) return fail(form.consent, "Göndermek için aydınlatma metnini okuyup onay kutusunu işaretlemen gerekiyor.");
     form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
 
     if (form.botcheck.checked) {
       say("Teşekkürler!", "ok");
+      return;
+    }
+
+    if (otp) {
+      const normalized = email.toLowerCase();
+      submit.disabled = true;
+      try {
+        if (codeSentTo !== normalized) {
+          say("Doğrulama kodu gönderiliyor…");
+          const sent = await callApi({ action: "send_code", name, email });
+          if (!sent.ok) {
+            if (sent.error === "wait") startResendCountdown(Number(sent.wait) || 60);
+            return fail(form.email, apiMessage(sent));
+          }
+          codeSentTo = normalized;
+          codeField.hidden = false;
+          submitLabel.textContent = "Fikrimi gönder";
+          startResendCountdown(60);
+          say("Doğrulama kodunu e-postana gönderdik. Kodu yazıp \"Fikrimi gönder\"e bas.", "ok");
+          codeInput.focus();
+          return;
+        }
+        const code = codeInput.value.trim();
+        if (!/^\d{6}$/.test(code)) return fail(codeInput, "E-postana gelen 6 haneli kodu yazar mısın?");
+        say("Gönderiliyor…");
+        const result = await callApi({ action: "submit", name, email, message, code, consent: "KVKK aydınlatma metni okundu, açık rıza verildi" });
+        if (!result.ok) {
+          if (result.error === "bad_code") return fail(codeInput, apiMessage(result));
+          if (result.error === "expired" || result.error === "too_many_attempts") {
+            codeInput.value = "";
+            startResendCountdown(0);
+          }
+          return say(apiMessage(result), "error");
+        }
+        form.reset();
+        resetOtp();
+        say("Fikrin bize ulaştı, teşekkürler! Her mesajı okuyoruz.", "ok");
+      } catch (error) {
+        console.error("Fikir formu gönderilemedi:", error);
+        say("Sunucuya ulaşılamadı. İnternet bağlantını ya da reklam engelleyiciyi kontrol edip tekrar dene.", "error");
+      } finally {
+        submit.disabled = false;
+      }
       return;
     }
 
