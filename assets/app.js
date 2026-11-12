@@ -156,6 +156,7 @@ const CONTACT_ICONS = {
   whatsapp: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 18.8L4 20z"/><path d="M9.2 8.6c.2-.4.5-.4.8-.3l.7 1.5c.1.3 0 .5-.2.7l-.5.6c.7 1.3 1.8 2.3 3.1 3l.7-.7c.2-.2.5-.2.7-.1l1.4.7c.3.2.3.5.2.8-.4 1-1.5 1.5-2.5 1.2-2.5-.7-4.5-2.7-5.3-5.2-.2-.8 0-1.6.9-2.2z" fill="currentColor" stroke="none"/></svg>',
   uye: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.4-3.2 2.6-5 5.5-5s5.1 1.8 5.5 5"/><path d="M16 5.6a3 3 0 0 1 0 5.8M17.5 14.4c2 .5 3.2 2.1 3.5 4.6"/></svg>',
   web: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5S9.6 5.9 12 3.5z"/></svg>',
+  linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><circle cx="7.8" cy="8" r="1.1" fill="currentColor" stroke="none"/><path d="M7.8 11v6M12 17v-4c0-1.4 1-2.3 2.2-2.3S16.3 11.6 16.3 13v4"/></svg>',
 };
 
 function renderContacts(contacts) {
